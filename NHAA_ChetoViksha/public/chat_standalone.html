@@ -1,0 +1,4670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Crisis Chat & AI Triage | NHAA 14566</title>
+  <style>
+/* ==========================================================================
+   NHAA 14566 - AI-ASSISTED STRESS & TRAUMA ASSESSMENT MODULE
+   Theme: Official Government HealthTech / Atrocity Helpline Portal
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --primary-900: #06182c;
+  --primary-800: #0a2540;
+  --primary-700: #0f3460;
+  --primary-600: #134074;
+  --primary-500: #1d63b8;
+  --primary-100: #e7effb;
+  --primary-50:  #f0f5fc;
+
+  --accent-saffron: #f58220;
+  --accent-saffron-dark: #d96b0c;
+  --accent-gold: #e5a93c;
+
+  --success-green: #059669;
+  --success-light: #d1fae5;
+  --warning-amber: #d97706;
+  --warning-light: #fef3c7;
+  --danger-red: #dc2626;
+  --danger-light: #fee2e2;
+
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --text-white: #ffffff;
+
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f1f5f9;
+  --border-light: #e2e8f0;
+  --border-hover: #cbd5e1;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-body);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--primary-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-700);
+}
+
+/* ==========================================================================
+   TOP EMERGENCY & GOVERNMENT BARS
+   ========================================================================== */
+
+.gov-topbar {
+  background: var(--primary-900);
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  padding: 0.4rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gov-topbar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gov-branding {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tricolor-stripe {
+  display: inline-flex;
+  height: 12px;
+  width: 18px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+.tricolor-stripe span:nth-child(1) { background: #FF9933; width: 33.3%; }
+.tricolor-stripe span:nth-child(2) { background: #FFFFFF; width: 33.3%; }
+.tricolor-stripe span:nth-child(3) { background: #138808; width: 33.3%; }
+
+.gov-meta-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gov-meta-links a {
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.gov-meta-links a:hover {
+  color: #ffffff;
+}
+
+/* Safety Quick Exit Button */
+.btn-quick-exit {
+  background-color: #dc2626;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-quick-exit:hover {
+  background-color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+/* Emergency Helpline Alert Ribbon */
+.emergency-banner {
+  background: linear-gradient(90deg, #b91c1c 0%, #dc2626 50%, #991b1b 100%);
+  color: #ffffff;
+  padding: 0.55rem 1.5rem;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.emergency-banner-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.emergency-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #fef08a;
+  border-radius: 50%;
+  animation: pulseAnimation 1.6s infinite;
+  display: inline-block;
+}
+
+@keyframes pulseAnimation {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(254, 240, 138, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(254, 240, 138, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(254, 240, 138, 0); }
+}
+
+.emergency-phone-tag {
+  background: #ffffff;
+  color: #b91c1c;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+
+.main-navbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.emblem-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--primary-100);
+  border: 1.5px solid var(--primary-500);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-700);
+  flex-shrink: 0;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-code {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-saffron-dark);
+  letter-spacing: 1px;
+}
+
+.brand-main {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-900);
+  line-height: 1.2;
+}
+
+.brand-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  padding: 0.4rem 0.2rem;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary-500);
+  border-bottom-color: var(--primary-500);
+}
+
+.nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Auth Profile Pill */
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary-700);
+}
+
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  background: var(--primary-500);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   BUTTONS & FORM CONTROLS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  padding: 0.85rem 1.6rem;
+  font-size: 1rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn-primary {
+  background: var(--primary-600);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--primary-700);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-saffron {
+  background: var(--accent-saffron);
+  color: #ffffff;
+}
+
+.btn-saffron:hover {
+  background: var(--accent-saffron-dark);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border-light);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: var(--bg-card-subtle);
+  border-color: var(--border-hover);
+  color: var(--primary-700);
+}
+
+.btn-danger {
+  background: var(--danger-red);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-card-subtle);
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   PAGE: WELCOME / LANDING (index.html)
+   ========================================================================== */
+
+.hero-section {
+  background: linear-gradient(135deg, #06182c 0%, #0a2540 60%, #134074 100%);
+  color: #ffffff;
+  padding: 4rem 1.5rem 4.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(245, 130, 32, 0.12) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.hero-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.badge-tag {
+  background: rgba(245, 130, 32, 0.2);
+  color: #fbd38d;
+  border: 1px solid rgba(245, 130, 32, 0.4);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-official {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.5px;
+}
+
+.hero-title .highlight-gold {
+  color: #fbc02d;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Hero Stats Bar */
+.hero-stats-row {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-stat-item h4 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.hero-stat-item p {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Hero Interactive Card / SVI Ticker */
+.hero-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: 0 25px 40px -10px rgba(0,0,0,0.4);
+}
+
+.hero-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+.sample-conversation-box {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.chat-bubble {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  max-width: 90%;
+  line-height: 1.4;
+}
+
+.chat-bubble-user {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  align-self: flex-start;
+}
+
+.chat-bubble-ai {
+  background: rgba(29, 99, 184, 0.4);
+  color: #93c5fd;
+  align-self: flex-end;
+  border-left: 3px solid #60a5fa;
+}
+
+/* SVI Score Gauge Preview in Card */
+.svi-mini-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.svi-score-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.svi-number {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #f87171;
+}
+
+.svi-meta h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.svi-meta p {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.risk-chip {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.risk-chip.critical {
+  background: rgba(220, 38, 38, 0.25);
+  color: #fca5a5;
+  border: 1px solid #dc2626;
+}
+
+.risk-chip.high {
+  background: rgba(217, 119, 6, 0.25);
+  color: #fcd34d;
+  border: 1px solid #d97706;
+}
+
+.risk-chip.moderate {
+  background: rgba(37, 99, 235, 0.25);
+  color: #93c5fd;
+  border: 1px solid #2563eb;
+}
+
+.risk-chip.low {
+  background: rgba(5, 150, 105, 0.25);
+  color: #6ee7b7;
+  border: 1px solid #059669;
+}
+
+/* ==========================================================================
+   CORE ACTION TILES / GRID SECTION
+   ========================================================================== */
+
+.section-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.section-header-center {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-tag {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--primary-500);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-900);
+  margin-bottom: 0.75rem;
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-hover);
+}
+
+.action-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--primary-500);
+}
+
+.action-card.card-citizen::before { background: var(--accent-saffron); }
+.action-card.card-officer::before { background: var(--primary-600); }
+.action-card.card-track::before { background: var(--success-green); }
+
+.card-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.card-citizen .card-icon-wrap { background: #fff7ed; color: var(--accent-saffron-dark); }
+.card-officer .card-icon-wrap { background: var(--primary-100); color: var(--primary-600); }
+.card-track .card-icon-wrap { background: var(--success-light); color: var(--success-green); }
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-900);
+  margin-bottom: 0.6rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.card-features-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-features-list li {
+  font-size: 0.82rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-features-list li svg {
+  color: var(--success-green);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   INTERACTIVE SVI ARCHITECTURE DEMO SECTION
+   ========================================================================== */
+
+.svi-demo-wrapper {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.svi-demo-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.criteria-selector-box h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-900);
+  margin-bottom: 0.5rem;
+}
+
+.criteria-selector-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.criteria-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.criterion-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--bg-body);
+  user-select: none;
+}
+
+.criterion-label:hover {
+  background: #ffffff;
+  border-color: var(--primary-500);
+}
+
+.criterion-label.checked {
+  background: var(--primary-50);
+  border-color: var(--primary-500);
+}
+
+.criterion-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.criterion-left input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--primary-600);
+  cursor: pointer;
+}
+
+.criterion-weight {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.criterion-weight.override {
+  background: var(--danger-light);
+  color: var(--danger-red);
+}
+
+/* SVI Output Visualizer Panel */
+.svi-display-panel {
+  background: var(--primary-900);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+
+.svi-display-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.svi-main-metric {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.svi-big-number {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #fbc02d;
+  letter-spacing: -1px;
+}
+
+.svi-score-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+.svi-progress-bar-container {
+  background: rgba(255, 255, 255, 0.15);
+  height: 12px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.svi-progress-fill {
+  height: 100%;
+  width: 15%;
+  background: #10b981;
+  transition: width 400ms ease, background-color 400ms ease;
+}
+
+.svi-meta-breakdown {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.svi-meta-row {
+  display: flex;
+  justify-content: space-between;
+  color: #cbd5e1;
+}
+
+.svi-meta-row strong {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   PRINCIPLES & COMPLIANCE SECTION
+   ========================================================================== */
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.principle-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.principle-item h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-900);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.principle-item p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   PAGE: LOGIN & AUTH (login.html)
+   ========================================================================== */
+
+.login-page-body {
+  background: linear-gradient(180deg, #f0f5fc 0%, #f8fafc 100%);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-wrapper {
+  max-width: 520px;
+  width: 100%;
+  margin: 2.5rem auto 3.5rem;
+  padding: 0 1rem;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.login-card-header {
+  background: linear-gradient(135deg, #06182c 0%, #0a2540 100%);
+  color: #ffffff;
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.login-card-header .emblem-icon {
+  margin: 0 auto 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.login-card-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.login-card-header p {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+/* Dual Auth Tabs */
+.auth-tabs {
+  display: flex;
+  background: var(--bg-card-subtle);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.auth-tab-btn:hover {
+  color: var(--primary-700);
+  background: rgba(0,0,0,0.02);
+}
+
+.auth-tab-btn.active {
+  color: var(--primary-600);
+  background: #ffffff;
+  border-bottom-color: var(--primary-600);
+}
+
+.auth-form-container {
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--text-subtle);
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 0.85rem 0.75rem 2.5rem;
+  font-size: 0.9rem;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  background: #ffffff;
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(29, 99, 184, 0.15);
+}
+
+.form-input-plain {
+  padding-left: 0.85rem;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-subtle);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* Demo Credentials Quick Pill Box */
+.demo-credentials-box {
+  background: var(--bg-card-subtle);
+  border: 1px dashed var(--border-hover);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.demo-credentials-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  color: var(--primary-900);
+}
+
+.btn-fill-demo {
+  background: var(--primary-100);
+  color: var(--primary-700);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.btn-fill-demo:hover {
+  background: #dbeafe;
+}
+
+.login-footer-disclaimer {
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 1.25rem;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   MODAL & TOAST NOTIFICATIONS
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(6, 24, 44, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  padding: 1rem;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  max-width: 540px;
+  width: 100%;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform var(--transition-base);
+}
+
+.modal-backdrop.active .modal-window {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card-subtle);
+}
+
+.modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-900);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.modal-body {
+  padding: 1.75rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  background: var(--bg-card-subtle);
+}
+
+/* Toast System */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.toast {
+  background: #1e293b;
+  color: #ffffff;
+  padding: 0.75rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: slideInToast 250ms ease;
+}
+
+.toast.success { background: #065f46; border-left: 4px solid #10b981; }
+.toast.error   { background: #991b1b; border-left: 4px solid #ef4444; }
+.toast.info    { background: #1e3a8a; border-left: 4px solid #3b82f6; }
+
+@keyframes slideInToast {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.portal-footer {
+  background: var(--primary-900);
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+  font-size: 0.82rem;
+}
+
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-col h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.footer-col p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links-list a {
+  color: #94a3b8;
+  font-size: 0.82rem;
+}
+
+.footer-links-list a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 1.5rem;
+  background: #04101e;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   RESPONSIVE QUERIES
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .svi-demo-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .nav-links {
+    justify-content: center;
+  }
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   FLOATING AI CRISIS CHAT WIDGET & DOSSIER MODAL
+   ========================================================================== */
+
+.floating-chat-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #f58220 0%, #d96b0c 100%);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 30px;
+  box-shadow: 0 8px 24px rgba(245, 130, 32, 0.4);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.floating-chat-launcher:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(245, 130, 32, 0.5);
+}
+
+.floating-chat-window {
+  position: fixed;
+  bottom: 85px;
+  right: 24px;
+  width: 380px;
+  height: 520px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(6, 24, 44, 0.25);
+  border: 1px solid var(--border-light);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideUpFade 0.25s ease-out;
+}
+
+.floating-chat-window.active {
+  display: flex;
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.floating-chat-header {
+  background: var(--primary-900);
+  color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floating-chat-stream {
+  flex: 1;
+  padding: 14px;
+  background: #f8fafc;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.floating-chat-input-row {
+  padding: 10px 14px;
+  background: #ffffff;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  gap: 8px;
+}
+
+.floating-chat-input-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.floating-chat-input-row button {
+  background: var(--accent-saffron);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .floating-chat-window {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    bottom: 75px;
+    height: 480px;
+  }
+}
+
+
+</style>
+  <style>
+    .chat-layout {
+      max-width: 1240px;
+      margin: 1.25rem auto;
+      padding: 0 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 1.25rem;
+      flex: 1;
+      height: calc(100vh - 165px);
+      min-height: 600px;
+    }
+    @media (max-width: 960px) {
+      .chat-layout { grid-template-columns: 1fr; height: auto; }
+      .chat-window { min-height: 520px; }
+      .triage-sidepanel { margin-top: 1rem; display: flex; }
+    }
+    .chat-window {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .chat-header {
+      padding: 0.85rem 1.25rem;
+      background: var(--primary-900);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .chat-header-title { display: flex; align-items: center; gap: 0.75rem; }
+    .chat-header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .select-lang-control {
+      background: #0f3460;
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn-control-chip {
+      background: rgba(255,255,255,0.1);
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.6rem;
+      font-size: 0.72rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+    .btn-control-chip:hover {
+      background: rgba(255,255,255,0.2);
+      color: #ffffff;
+    }
+    .btn-control-chip.active {
+      background: var(--accent-saffron);
+      border-color: var(--accent-saffron);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .offline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .chat-stream {
+      flex: 1;
+      padding: 1.25rem;
+      overflow-y: auto;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .chat-row { display: flex; width: 100%; }
+    .chat-row-user { justify-content: flex-end; }
+    .chat-row-bot { justify-content: flex-start; }
+    
+    .chat-bubble {
+      max-width: 80%;
+      padding: 0.85rem 1.15rem;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .chat-bubble-user {
+      background: var(--primary-600);
+      color: #ffffff;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-bubble-ai {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--accent-saffron);
+      border-bottom-left-radius: 2px;
+    }
+    .chat-bubble-ai.urgent-alert {
+      border-left-color: #dc2626;
+      background: #fffafa;
+    }
+    .bubble-meta {
+      font-size: 0.7rem;
+      opacity: 0.8;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .bubble-text { white-space: pre-wrap; word-break: break-word; }
+
+    .quick-prompts-bar {
+      padding: 0.6rem 1rem;
+      background: #f1f5f9;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      align-items: center;
+    }
+    .btn-quick-prompt {
+      background: #ffffff;
+      border: 1px solid var(--border-hover);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-700);
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-quick-prompt:hover {
+      background: var(--primary-100);
+      border-color: var(--primary-500);
+    }
+
+    .chat-input-area {
+      padding: 0.9rem 1.25rem;
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .chat-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .chat-input:focus { border-color: var(--primary-500); }
+
+    /* Sidepanel */
+    .triage-sidepanel {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      box-shadow: var(--shadow-sm);
+      overflow-y: auto;
+    }
+    .side-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .indicator-pill-item {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 3px solid #0f3460;
+      border-radius: 6px;
+      padding: 6px 9px;
+      margin-bottom: 6px;
+      font-size: 0.75rem;
+    }
+    .indicator-pill-item.override {
+      border-left-color: #dc2626;
+      background: #fef2f2;
+    }
+  </style>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+  <!-- Top Government Branding & Safety Bar -->
+  <div class="gov-topbar">
+    <div class="gov-topbar-inner">
+      <div class="gov-branding">
+        <div class="tricolor-stripe"><span></span><span></span><span></span></div>
+        <span>Ministry of Social Justice & Empowerment • Government of India</span>
+      </div>
+      <div class="gov-meta-links">
+        <span class="offline-badge">
+          <span class="pulse-dot" style="background:#10b981; width:6px; height:6px;"></span>
+          100% Offline Local AI (Private)
+        </span>
+        <button class="btn-quick-exit" onclick="triggerQuickExit()" title="Instantly exit to Google for emergency privacy">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          Quick Exit (Safety)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Helpline Ribbon -->
+  <div class="emergency-banner">
+    <div class="emergency-banner-inner">
+      <div class="emergency-banner-left">
+        <span class="pulse-dot"></span>
+        <span>National Crisis Helpline: <strong>14566</strong> (Toll-Free 24x7) | Tele-MANAS: <strong>14416</strong></span>
+      </div>
+      <div style="font-size:0.75rem;">
+        Confidential Intake • Real-Time AI Stress & Trauma Triage Module
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="main-navbar" style="box-shadow:none; border-bottom:1px solid var(--border-light);">
+    <div class="navbar-container">
+      <div class="brand-header">
+        <a href="index.html" class="emblem-icon" title="Portal Home">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </a>
+        <div class="brand-titles">
+          <span class="brand-code">NHAA 14566 Live Intake</span>
+          <span class="brand-main">Citizen Crisis Chat & AI Triage</span>
+        </div>
+      </div>
+      <div id="nav-auth-container" class="nav-cta-group">
+        <a href="index.html" class="btn btn-sm btn-outline">Exit to Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Chat Grid -->
+  <div class="chat-layout">
+    
+    <!-- Chat Window (Left) -->
+    <div class="chat-window">
+      <div class="chat-header">
+        <div class="chat-header-title">
+          <div style="width:10px; height:10px; border-radius:50%; background:#10b981;"></div>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;" id="chat-complainant-name">Citizen Crisis Session</div>
+            <div style="font-size:0.75rem; color:#94a3b8;">
+              Active Case: <strong id="active-case-id" style="color:#60a5fa;">Initializing...</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls: Language, Sensitivity, Session Dossier -->
+        <div class="chat-header-controls">
+          <!-- Language Selector -->
+          <select id="chat-language-select" class="select-lang-control" onchange="changeLanguage(this.value)" title="Choose conversational language">
+            <option value="auto">🌐 Auto-Detect Language</option>
+            <option value="en">English</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="hinglish">Hinglish (Roman Hindi)</option>
+          </select>
+
+          <!-- Sensitivity Toggle -->
+          <button id="btn-toggle-sensitivity" class="btn-control-chip active" onclick="toggleSensitivity()" title="High Sensitivity catches subtle trauma, caste slurs, and fear signals">
+            ⚡ High Sensitivity: ON
+          </button>
+
+          <!-- New Session Button -->
+          <button class="btn-control-chip" onclick="startNewCase()" title="Reset and start fresh crisis session">
+            🔄 New Session
+          </button>
+
+          <!-- Session Dossier / Audit Record -->
+          <button class="btn-control-chip" onclick="openSessionDossierModal()" title="View recorded transcripts, evidence snippets, and SVI audit history">
+            📋 Session Dossier
+          </button>
+        </div>
+      </div>
+
+      <!-- Live SVI Index Banner inside Chat Window (Always visible on all screen sizes!) -->
+      <div class="chat-svi-banner" style="background:#0a2540; color:#ffffff; padding:0.55rem 1.25rem; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); flex-wrap:wrap; gap:0.5rem;">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <span style="font-size:0.72rem; color:#94a3b8; font-weight:700; letter-spacing:0.04em;">CURRENT SVI INDEX:</span>
+          <span id="chat-header-svi-score" style="font-size:1.15rem; font-weight:800; color:#ffffff; background:rgba(255,255,255,0.12); padding:2px 10px; border-radius:6px; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">0 / 100</span>
+          <span id="chat-header-risk-band" class="risk-chip low" style="font-size:0.68rem;">LOW RISK</span>
+          <span id="chat-header-override" style="display:none; color:#fca5a5; font-size:0.72rem; font-weight:700; background:rgba(220,38,38,0.3); padding:2px 6px; border-radius:4px;">⚠️ Critical Override Active</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="svi-progress-bar-container" style="width:130px; height:6px; margin:0; background:rgba(255,255,255,0.15);">
+            <div id="chat-header-svi-progress" class="svi-progress-fill" style="width: 5%; background-color:#10b981; transition:width 0.4s ease, background-color 0.4s ease;"></div>
+          </div>
+          <span id="chat-header-indicator-badge" style="font-size:0.7rem; color:#93c5fd; font-weight:600;">0 Indicators</span>
+        </div>
+      </div>
+
+      <!-- Messages Stream -->
+      <div class="chat-stream" id="chat-stream">
+        <div class="chat-row chat-row-bot">
+          <div class="chat-bubble chat-bubble-ai">
+            <div class="bubble-meta">
+              <span>🤖 NHAA AI Assistant (Offline)</span>
+              <span>Initial Intake</span>
+            </div>
+            <div class="bubble-text">Namaste. You are connected to the National Helpline Against Atrocities (14566). All communication is strictly confidential and protected under the SC/ST (PoA) Act 1989 & PCR Act 1955.
+
+Please tell us what happened or what threat you are currently facing. You can type in English, Hindi (हिन्दी), Bengali (বাংলা), Tamil (தமிழ்), Telugu (తెలుగు), Marathi (मराठी), or Hinglish. If you are in immediate danger, let us know right away.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multilingual Quick Prompts Bar -->
+      <div class="quick-prompts-bar">
+        <span style="font-size:0.72rem; color:var(--text-muted); font-weight:700; align-self:center;">Try Prompt:</span>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('danger')">🚨 "Armed mob outside right now"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('hindi')">🇮🇳 "बाहर लाठी लेकर जान से मारने की धमकी दे रहे हैं"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('bengali')">🇮🇳 "বাড়ি ঘিরে ধরেছে, প্রাণনাশের হুমকি দিচ্ছে"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('tamil')">🇮🇳 "வெளியே சூழ்ந்து கொண்டு கொலை மிரட்டல்"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('hinglish')">🇮🇳 "Bahar hathiyar leke khade hain, dar lag raha"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('selfharm')">🆘 "Cannot live anymore, want to end life"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('medical')">🏥 "Head injury bleeding, clinic refused"</button>
+        <button class="btn-quick-prompt" onclick="sendQuickPrompt('boycott')">🚫 "Village water well boycott decree"</button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" class="chat-input" placeholder="Type your situation in any language (e.g. 'They threatened our family outside')..." autofocus>
+        <button class="btn btn-saffron" onclick="sendMessage()" style="padding:0.75rem 1.4rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Triage Monitor (Right Sidepanel) -->
+    <div class="triage-sidepanel">
+      <div class="side-title">
+        <span>⚡ Real-Time SVI Engine</span>
+        <div style="display:flex; align-items:center; gap:0.35rem;">
+          <span id="panel-sync-badge" style="font-size:0.68rem; color:#065f46; background:#d1fae5; padding:1px 6px; border-radius:4px; font-weight:700;">⚡ Live Synced</span>
+          <span id="sidepanel-lang-tag" style="font-size:0.68rem; color:#0f3460; background:#e0f2fe; padding:1px 6px; border-radius:4px; font-weight:700;">English</span>
+        </div>
+      </div>
+
+      <!-- SVI Gauge Card -->
+      <div style="background:var(--bg-body); border:1px solid var(--border-light); border-radius:var(--radius-md); padding:1rem; text-align:center;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <span style="font-size:0.7rem; color:var(--text-muted); font-weight:700; letter-spacing:0.05em;">STRESS VULNERABILITY INDEX</span>
+          <span style="font-size:0.65rem; color:#1e3a8a; background:#dbeafe; padding:1px 5px; border-radius:3px; font-weight:700;">SVI-8.1</span>
+        </div>
+        <div id="panel-svi-score" style="font-size:2.2rem; font-weight:800; color:var(--primary-900); margin:0.15rem 0;">0 / 100</div>
+        
+        <div class="svi-progress-bar-container" style="margin:0.4rem 0; height:8px;">
+          <div id="panel-svi-progress" class="svi-progress-fill" style="width: 5%; background-color:#10b981;"></div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.65rem; color:#94a3b8; margin-bottom:0.4rem;">
+          <span>0 Low</span>
+          <span>25 Mod</span>
+          <span>50 High</span>
+          <span>75 Crit</span>
+        </div>
+
+        <div style="margin-top:0.2rem;">
+          <span id="panel-risk-band" class="risk-chip low">LOW RISK</span>
+        </div>
+
+        <div id="panel-svi-formula-meta" style="margin-top:0.35rem;">
+          <div style="font-size:0.68rem; color:#64748b;">
+            <strong>Formula:</strong> SVI = MIN(100, &Sigma; weights) &bull; <span style="color:#0f3460; font-weight:700;">v8.1</span>
+          </div>
+        </div>
+
+        <div id="panel-override-notice" style="display:none; margin-top:0.65rem; padding:0.5rem; background:#fee2e2; border:1px solid #f87171; border-radius:4px; font-size:0.72rem; color:#b91c1c; text-align:left;">
+          ⚠️ <strong>SECTION 8.3 CRITICAL OVERRIDE ACTIVE</strong>
+        </div>
+      </div>
+
+      <!-- Detected Indicators Section -->
+      <div>
+        <div class="side-title">
+          <span>🔍 Extracted Indicators (<span id="panel-indicator-count">0</span>)</span>
+        </div>
+        <div id="panel-indicators-list" style="max-height:190px; overflow-y:auto; margin-top:0.5rem;">
+          <div style="font-size:0.75rem; color:var(--text-muted); font-style:italic;">No indicators detected yet. As the citizen communicates, verified indicators with quoted evidence are extracted in real time.</div>
+        </div>
+      </div>
+
+      <!-- Recommended Statutory Action -->
+      <div>
+        <div class="side-title">📋 Recommended Action</div>
+        <div id="panel-action-rec" style="font-size:0.8rem; color:var(--primary-700); background:var(--primary-50); border:1px solid var(--primary-100); padding:0.75rem; border-radius:var(--radius-md); line-height:1.4; margin-top:0.5rem;">
+          Standard automated guidance and informational helpline registration.
+        </div>
+      </div>
+
+      <!-- Action Buttons Footer -->
+      <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.5rem;">
+        <button class="btn btn-outline btn-sm" onclick="openSessionDossierModal()" style="width:100%;">
+          📄 View Recorded Session Dossier
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="exportAndDownloadCase()" style="width:100%;">
+          💾 Export / Download Case File
+        </button>
+        <div style="font-size:0.68rem; color:var(--text-muted); text-align:center; margin-top:0.25rem;">
+          SC/ST PoA Act 1989 & PCR Act 1955 • Local Storage Audited
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Session Dossier / Audit Record Modal -->
+  <div class="modal-backdrop" id="session-dossier-modal">
+    <div class="modal-window" style="max-width:700px;">
+      <div class="modal-header">
+        <h3>📋 Session Dossier & Audit Record</h3>
+        <button class="modal-close-btn" onclick="closeSessionDossierModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="max-height:65vh; overflow-y:auto;">
+        <div id="dossier-case-meta" style="background:#f8fafc; padding:0.85rem; border-radius:var(--radius-md); border:1px solid var(--border-light); margin-bottom:1rem; font-size:0.82rem;">
+          <!-- Populated dynamically -->
+        </div>
+
+        <h4 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary-900);">Detected Vulnerability Signals</h4>
+        <div id="dossier-indicators-container" style="margin-bottom:1rem;">
+          <!-- Populated dynamically -->
+        </div>
+
+        <h4 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary-900);">Full Conversation Transcript</h4>
+        <div id="dossier-transcript-container" style="background:#fff; border:1px solid var(--border-light); border-radius:var(--radius-md); padding:0.75rem; max-height:220px; overflow-y:auto; font-size:0.8rem; display:flex; flex-direction:column; gap:0.5rem;">
+          <!-- Populated dynamically -->
+        </div>
+
+        <h4 style="font-size:0.9rem; margin:1rem 0 0.5rem 0; color:var(--primary-900);">Audit Log Trail</h4>
+        <div id="dossier-audit-container" style="background:#f1f5f9; border-radius:var(--radius-sm); padding:0.6rem; font-size:0.75rem; color:#475569; max-height:120px; overflow-y:auto;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between;">
+        <button class="btn btn-outline btn-sm" onclick="exportAndDownloadCase()">
+          💾 Download JSON Record
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="closeSessionDossierModal()">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Portal Scripts: AI Engine, Auth, App, and Chat -->
+<script>
+/**
+ * NHAA 14566 - Autonomous Offline Multilingual AI Crisis Triage Engine
+ * 100% Client-Side • Zero Internet Required • Highly Sensitive Trauma Intake
+ *
+ * Implements:
+ * - Deterministic SVI Scoring Formula (Section 8.4): SVI = MIN(100, sum of applicable approved criterion weights)
+ * - Section 8.3 Critical Overrides: If immediate danger=true, active self-harm emergency=true,
+ *   or life-threatening medical emergency=true, the final classification becomes CRITICAL regardless of score.
+ * - Section 8.2 Risk Bands: 0-24 LOW, 25-49 MODERATE, 50-74 HIGH, 75-100 CRITICAL
+ * - Section 8.4 Audit Log Metadata: criteria_version: 'SVI-8.1', formula, raw_sum, quoted evidentiary basis
+ * - 10 Predefined Approved Distress Criteria from Table 8.1
+ * - Massively Expanded Multilingual Semantic Indicators: English, Hindi, Bengali, Tamil, Telugu, Marathi, Hinglish
+ * - Multi-Turn Conversational Dialogue Engine (Zero Repeating Responses)
+ * - Local Session Dossier Recording & Audit Trail (localStorage)
+ */
+
+(function(root) {
+  'use strict';
+
+  // 1. SVI CRITERIA SPECIFICATION (Table 8.1 of Section 8)
+  const CRITERIA_DEFINITIONS = {
+    immediate_physical_danger: {
+      name: "Immediate Physical Danger",
+      weight: 25,
+      is_override: true,
+      category: "Critical Override",
+      statutory_code: "SVI-C01",
+      description: "Immediate ongoing physical confrontation, armed assailants, active mob, or imminent bodily harm."
+    },
+    self_harm_indication: {
+      name: "Active Self-Harm Emergency",
+      weight: 30,
+      is_override: true,
+      category: "Critical Override",
+      statutory_code: "SVI-C02",
+      description: "Active suicidal ideation, acute despair, or mention of lethal means (poison, hanging, pesticide)."
+    },
+    medical_emergency: {
+      name: "Life-Threatening Medical Emergency",
+      weight: 25,
+      is_override: true,
+      category: "Critical Override",
+      statutory_code: "SVI-C03",
+      description: "Acute life-threatening medical trauma, severe bleeding, unconsciousness, or denial of emergency medical care."
+    },
+    serious_physical_injury: {
+      name: "Serious Physical Injury",
+      weight: 20,
+      is_override: false,
+      category: "High Severity",
+      statutory_code: "SVI-H01",
+      description: "Severe wounds, bone fractures, head trauma, hemorrhage, or severe physical battery."
+    },
+    death_threat: {
+      name: "Death Threat / Lethal Violence",
+      weight: 20,
+      is_override: false,
+      category: "High Severity",
+      statutory_code: "SVI-H02",
+      description: "Explicit threats to kill the victim or family members, display of weapons, or threats of arson."
+    },
+    sexual_violence_indicator: {
+      name: "Sexual Violence & Molestation",
+      weight: 25,
+      is_override: false,
+      category: "High Severity",
+      statutory_code: "SVI-H03",
+      description: "Sexual assault, rape, molestation, stripping, disrobing, or aggravated gender-based atrocities."
+    },
+    extreme_fear_distress: {
+      name: "Extreme Fear / Acute Trauma",
+      weight: 10,
+      is_override: false,
+      category: "Support Indicator",
+      statutory_code: "SVI-S01",
+      description: "Acute terror, shivering, panic attack, locking oneself indoors, or weeping in fear."
+    },
+    intimidation_retaliation_threat: {
+      name: "Intimidation & Retaliation Threat",
+      weight: 10,
+      is_override: false,
+      category: "Support Indicator",
+      statutory_code: "SVI-S02",
+      description: "Coercion to withdraw police complaint/FIR, witness intimidation, or threats of false counter-cases."
+    },
+    social_isolation: {
+      name: "Social Boycott & Caste Discrimination",
+      weight: 10,
+      is_override: false,
+      category: "Support Indicator",
+      statutory_code: "SVI-S03",
+      description: "Caste-decreed social boycott, denial of drinking water, access to public roads, or untouchability practices."
+    },
+    forced_displacement: {
+      name: "Forced Displacement & Land Eviction",
+      weight: 10,
+      is_override: false,
+      category: "Support Indicator",
+      statutory_code: "SVI-S04",
+      description: "Demolition of home, illegal eviction from patta/agricultural land, fleeing village due to terror."
+    }
+  };
+
+  // 2. MASSIVELY EXPANDED MULTILINGUAL & TRANSLITERATED INDICATOR PATTERNS
+  // Supports: English, Hindi, Bengali, Tamil, Telugu, Marathi, Hinglish (Vernacular Latin)
+  const MULTILINGUAL_PATTERNS = {
+    immediate_physical_danger: [
+      /\b(armed|mob|mobs|assailants?|surround(ed|ing)?|outside\s+(my|our|the)\s+(house|gate|door|home|residence|village)|break(ing)?\s+(in|the\s+door|the\s+gate|windows?)|battering\s+(the\s+door|the\s+gate)|banging\s+(the\s+door|on\s+the\s+door)|trying\s+to\s+break\s+in|trying\s+to\s+enter|kill\s+me\s+now|right\s+now|chasing\s+(me|us)|attack(ing)?\s+now|locked\s+inside|trapped\s+inside|they\s+are\s+coming|stone\s+pelting|pelting\s+stones|throwing\s+stones|at\s+the\s+door|crowd\s+outside|siege|cornered\s+us|lynch(ing)?|active\s+mob|about\s+to\s+attack|smashing\s+(the\s+door|windows)|outside\s+right\s+now)\b/i,
+      /(बाहर\s*(भीड़|लोग|हथियार|खड़े|घेर|दरवाजे|आए|उपद्रवी|लाठी|डंडे|बदमाश)|दरवाजा\s*तोड़|जान\s*का\s*खतरा|अभी\s*हमला|मारने\s*आए|घेर\s*लिया|लाठी\s*(लेकर|डंडे)?|पत्थरबाजी|पत्थर\s*फेंक|घर\s*में\s*घुस|दरवाजा\s*खटखटा|दरवाजा\s*पीट|खिड़की\s*तोड़|कुंडी\s*तोड़|अंदर\s*घुस|जिंदा\s*नहीं\s*छोड़ेंगे\s*अभी|पीछा\s*कर\s*रहे|कोने\s*में\s*फंसे|बचाओ\s*कोई|भीड़\s*ने\s*घेरा|जान\s*बचाओ)/i,
+      /(বাইরে\s*(দল|অস্ত্র|দাঁড়িয়ে|ঘিরে|দরজায়|লোকজন|গুণ্ডা|লাঠি)|দরজা\s*ভাঙ|এখুনি\s*মেরে|আক্রমণ\s*করছে|ঘিরে\s*রেখেছে|ঘিরে\s*ধরেছে|লাঠিসোঁটা|পাথর\s*ছুড়ছে|ঘরে\s*ঢোকার\s*চেষ্টা|দরজায়\s*ধাক্কা|প্রাণে\s*মেরে\s*ফেলবে\s*এখনই|তাড়া\s*করছে|ভেতরে\s*আটকে|বাঁচান)/i,
+      /(வெளியே|கும்பல்|ஆயுதம்|கதவை\s*உடை|கொல்ல\s*வருகிறார்கள்|சூழ்ந்து|தாக்குகிறார்கள்|வீட்டுக்குள்\s*நுழைய|கல்லெறி|உயிருக்கு\s*ஆபத்து|துரத்துகிறார்கள்|காப்பாற்றுங்கள்)/i,
+      /(బయట|గుంపు|ఆయుధాలు|తలుపులు\s*బద్దలు|దాడి\s*చేస్తున్నారు|చుట్టుముట్టారు|ఇంట్లోకి\s*దూరేందుకు|రాళ్లు\s*రువ్వుతున్నారు|ప్రాణాపాయం|వెంటపడుతున్నారు|కాపాడండి)/i,
+      /(बाहेर\s*(गर्दी|हत्यारे|उभे|लोक)|दार\s*तोड|हल्ला\s*करत\s*आहेत|घेरले\s*आहे|मारहाण\s*करायला\s*आले|घरात\s*शिरत|दगडफेक|जीव\s*वाचवा|घरावर\s*हल्ला|लाठ्या\s*काठ्या)/i,
+      /\b(bahar\s*(khade|hathiyar|mob|bheed|ghera|darwaze|hai|log|gunde|laathi|dande)|darwaza\s*tod|jaan\s*ka\s*khatra|abhi\s*hamla|attack\s*kar\s*rahe|laathi\s*dande|pathrav|patthar\s*fenk|gherao\s*kiya|marne\s*aaye|darwaza\s*peet|andar\s*ghus\s*rahe|locked\s*inside|trapped|peecha\s*kar\s*rahe|koi\s*bachao|jaan\s*bachao|outside\s*right\s*now)\b/i
+    ],
+
+    self_harm_indication: [
+      /\b(suicid(e|al)|end\s+my\s+life|kill\s+myself|want\s+to\s+die|pesticides?|poisons?|cannot\s+live\s+anymore|can\'?t\s+live\s+anymore|no\s+hope\s+left|no\s+reason\s+to\s+live|give\s+up\s+living|hanging\s+myself|jump(ing)?\s+off|cut\s+my\s+wrists?|slit\s+my\s+wrists?|better\s+off\s+dead|feel\s+like\s+dying|ending\s+(it\s+all|everything)|drank\s+(poison|acid|pesticide)|consumed\s+poison|hanging\s+from\s+ceiling)\b/i,
+      /(खुदकुशी|आत्महत्या|जान\s*दे\s*दूंगा|जान\s*दे\s*रहा|ज़हर\s*पी|जहर\s*खा|कीटनाशक|अब\s*जीने\s*की\s*इच्छा\s*नहीं|मर\s*जाना\s*चाहता|फांसी|नदी\s*में\s*कूद|जीने\s*का\s*मन\s*नहीं|नस\s*काट|जिंदगी\s*खत्म\s*कर|कोई\s*उम्मीद\s*नहीं|मरने\s*जा\s*रहा|तेजाब\s*पी)/i,
+      /(আত্মহত্যা|জীবন\s*শেষ\s*করে\s*দেব|বিষ\s*খাব|বিষ\s*খেয়ে|কীটনাশক|আর\s*বাঁচতে\s*চাই\s*না|মরে\s*যেতে\s*চাই|গলায়\s*দড়ি|নদীতে\s*ঝাঁপ|কোনো\s*আশা\s*নেই|নিজেকে\s*শেষ\s*করে\s*দেব)/i,
+      /(தற்கொலை|உயிரை\s*மாய்த்துக்|விஷம்\s*குடிப்பேன்|விஷம்\s*குடித்து|வாழ\s*விருப்பமில்லை|செத்து\s*விடுகிறேன்|தூக்கு\s*போட்டு|எந்த\s*நம்பிக்கையும்\s*இல்லை|வாழ\s*முடியாது)/i,
+      /(ఆత్మహత్య|చనిపోతాను|విషం\s*తాగుతాను|పురుగుల\s*మందు|ఇక\s*బతకలేను|ప్రాణం\s*తీసుకుంటా|ఉరి\s*వేసుకుంటా|చనిపోవాలని\s*ఉంది)/i,
+      /(आत्महत्या|जीव\s*देईन|विष\s*पिईन|कीटकनाशक|जगण्याची\s*इच्छा\s*नाही|फाशी\s*घेईन|मरावेसे\s*वाटते|सर्व\s*संपवून\s*टाकतो)/i,
+      /\b(suicide\s*(kar\s*lunga|karne\s*ka|ka\s*man)|jaan\s*de\s*(dunga|dungi)|zehar\s*(pee|kha)|pesticide\s*(kha|pee)|mar\s*jaunga|jeena\s*nahi\s*chahta|zinda\s*nahi\s*rehna|phaansi\s*laga|fan\s*se\s*latak|no\s*reason\s*to\s*live|sab\s*khatam\s*kar\s*dunga|wrist\s*cut)\b/i
+    ],
+
+    medical_emergency: [
+      /\b(dying|cannot\s+breathe|can\'?t\s+breathe|stopped\s+breathing|choking|ambulances?|urgent\s+medical|unconscious|profuse\s+bleeding|profusely\s+bleeding|bleeding\s+heavily|no\s+clinic|critical\s+condition|cardiac\s+arrest|convulsions?|seizures?|gasping|need\s+doctor\s+urgently|clinic\s+refused|hospital\s+refused|denied\s+(treatment|admission|care)|no\s+pulse|bleeding\s+to\s+death|collapsed|in\s+coma|tadap\s*raha)\b/i,
+      /(सांस\s*नहीं\s*आ\s*रही|दम\s*घुट\s*रहा|एम्बुलेंस|अस्पताल\s*(मना|भर्ती\s*नहीं)|बेहोश\s*पड़ा|हालत\s*नाज़ुक|तड़प\s*रहा|रक्तस्राव\s*रुक\s*नहीं|खून\s*रुक\s*नहीं\s*रहा|डॉक्टर\s*(नहीं|मना)|इलाज\s*नहीं\s*कर\s*रहे|दम\s*तोड़\s*रहा|दौरा\s*पड़)/i,
+      /(নিঃশ্বাস\s*নিতে\s*পারছে\s*না|দম\s*আটকে|অ্যাম্বুলেন্স|অজ্ঞান\s*হয়ে|অবস্থা\s*আশঙ্কাজনক|মৃত্যুর\s*মুখে|রক্ত\s*থামছে\s*না|জরুরি\s*চিকিৎসা|হাসপাতালে\s*ভর্তি\s*নিচ্ছে\s*না|ডাক্তার\s*দেখছে\s*না|ছটফট\s*করছে)/i,
+      /(மூச்சு\s*விட\s*முடியவில்லை|ஆம்புலன்ஸ்|மயங்கி\s*விழுந்து|ஆபத்தான\s*நிலை|உயிர்\s*போகிறது|ரத்தம்\s*நிற்கவில்லை|மருத்துவமனை\s*மறுப்பு|துடிக்கிறார்)/i,
+      /(శ్వాస\s*ఆడటం\s*లేదు|అంబులెన్స్|స్పృహ\s*కోల్పోయారు|ప్రాణాపాయ\s*స్థితి|రక్తం\s*ఆగడం\s*లేదు|ఆసుపత్రి\s*చేర్చుకోలేదు|కొట్టుకుంటున్నారు)/i,
+      /(श्वास\s*घेता\s*येत\s*नाही|रुग्णवाहिका|बेशुद्ध\s*पडला|प्रकृती\s*चिंताजनक|रक्त\s*थांबत\s*नाही|तडफडत\s*आहे|दवाखान्याने\s*नाकारले|उपचार\s*नाकारले)/i,
+      /\b(saans\s*nahi\s*aa\s*rahi|dam\s*ghut\s*raha|ambulance\s*(bhejo|nahi\s*aayi|bulao)|behosh\s*(ho\s*gaya|pada\s*hai)|halat\s*(kharab|nazuk)|khoon\s*ruk\s*nahi\s*raha|critical\s*hai|tadap\s*raha|hospital\s*(ne\s*mana|admit\s*nahi)|doctor\s*bhaga\s*diya)\b/i
+    ],
+
+    serious_physical_injury: [
+      /\b(bleed(ing)?|beaten|fracture(d|s)?|broken\s+(bones?|arms?|legs?|ribs?|teeth|tooth|skulls?)|head\s+injury|hospital(ized)?|severe\s+pain|wound(ed|s)?|stitches|stab(bed|bing)?|bruised?|beaten\s+(brutally|mercilessly|badly)|assault(ed|ing)?|hit\s+(him|her|me|us|them)|bloody|internal\s+injur(y|ies)|beaten\s+with\s+(rods?|iron\s+rods?|sticks?|pipes?|lathis?)|skull\s+fracture|hemorrhage)\b/i,
+      /(खून\s*बह|सिर\s*में\s*चोट|सिर\s*फोड़|हाथ\s*पैर\s*टूट|हड्डी\s*तोड़|बहुत\s*मारा|अस्पताल\s*में|टांके|चाकू\s*मारा|मारपीट|बेरहमी\s*से\s*पीटा|लहूलुहान|रॉड\s*से\s*मारा|लोहे\s*के\s*पाइप|अंदरूनी\s*चोट|आंख\s*फूट)/i,
+      /(রক্তক্ষরণ|মাথায়\s*আঘাত|হাত\s*পা\s*ভেঙে|হাড়\s*ভাঙা|প্রচণ্ড\s*মারধর|হাসপাতালে|সেলাই|ছুরিকাঘাত|বেধড়ক\s*মার|রক্তাক্ত|রড\s*দিয়ে\s*মেরেছে|মারধর\s*করেছে)/i,
+      /(ரத்தப்போக்கு|தலையில்\s*காயம்|எலும்பு\s*முறிவு|தாக்குதல்|மருத்துவமனை|தையல்|கத்தியால்\s*குத்து|கடுமையாக\s*தாக்கினர்|கம்பியால்\s*அடித்தனர்)/i,
+      /(రక్తం\s*కారుతోంది|తలకు\s*గాయం|ఎముకలు\s*విరిచారు|విపరీతంగా\s*కొట్టారు|ఆసుపత్రిలో|కత్తితో\s*దాడి|కుట్లు\s*పడ్డాయి|రాడ్లతో\s*కొట్టారు)/i,
+      /(रक्त\s*वाहत|डोक्याला\s*मार|हात\s*पाय\s*मोडले|हाड\s*मोडले|बेदम\s*मारहाण|टाके\s*पडले|चाकूहल्ला|जखमी|रक्ताने\s*माखले|रॉडने\s*मारले)/i,
+      /\b(khoon\s*beh\s*raha|sar\s*(phod\s*diya|pe\s*chot)|hath\s*pair\s*toot\s*gaye|haddi\s*tod\s*di|bohot\s*maara|hospital\s*(leke\s*gaye|admit)|chaku\s*mara|taanke\s*aaye|marpeet|lahuluhan|rod\s*se\s*mara|buritarah\s*peeta)\b/i
+    ],
+
+    death_threat: [
+      /\b(death\s+threats?|threaten(ed|ing)?\s+to\s+kill|burn\s+down|shoot(ing)?|guns?|pistols?|knives|knife|swords?|murder(ed|ing)?|eliminate|end\s+your\s+life|slaughter|cut\s+into\s+pieces|set\s+fire|burn\s+our\s+house|threatened\s+(our|my)\s+lives?|will\s+not\s+leave\s+alive|kill\s+your\s+family|burn\s+alive|bury\s+alive|shouting\s+death\s+threats?)\b/i,
+      /(जान\s*से\s*मारने\s*की\s*धमकी|गोली\s*मार|घर\s*जला\s*देंगे|ज़िंदा\s*नहीं\s*छोड़ेंगे|जिंदा\s*जला|कत्ल\s*कर|टुकड़े\s*कर\s*देंगे|बंदूक|पिस्तौल|तलवार|आग\s*लगा\s*देंगे|कट्टा\s*दिखाया|परिवार\s*को\s*खत्म|मार\s*डालेंगे)/i,
+      /(প্রাণনাশের\s*হুমকি|গুলি\s*করে\s*মার|বাড়ি\s*পুড়িয়ে\s*দেবে|খুন\s*করব|টুকরো\s*করে\s*দেবে|জ্যান্ত\s*পুড়িয়ে|বন্দুক|তলোয়ার|আগুন\s*লাগিয়ে|কাউকে\s*বাঁচতে\s*দেব\s*না)/i,
+      /(கொலை\s*மிரட்டல்|கொன்றுவிடுவோம்|சுட்டுக்\s*கொல்வேன்|வீட்டை\s*கொளுத்துவேன்|உயிருடன்\s*விடமாட்டேன்|உயிரோடு\s*எரிப்போம்|துப்பாக்கி|வாள்|தீ\s*வைப்போம்|வெட்டிப்\s*போடுவோம்)/i,
+      /(చంపేస్తామని|చంపుతాం|కాల్చి\s*చంపుతాం|ఇల్లు\s*తగలబెడతాం|ప్రాణాలు\s*తీస్తాం|సజీవ\s*దహనం|తుపాకీ|కత్తులు|నరికేస్తాం|బెదిరింపు)/i,
+      /(जीवे\s*मारण्याची\s*धमकी|गोळी\s*घालू|घर\s*जाळून\s*टाकू|ठार\s*मारू|जिवंत\s*जाळून|बंदूक|तलवार|जाळपोळ|तुकडे\s*करू)/i,
+      /\b(jaan\s*se\s*maarne\s*ki\s*dhamki|goli\s*maar\s*denge|ghar\s*jala\s*denge|zinda\s*(nahi\s*chodenge|jala\s*denge)|khatam\s*kar\s*denge|talwar|pistol|gun|bandook|aag\s*laga\s*denge|maar\s*dalenge|katta\s*tana)\b/i
+    ],
+
+    sexual_violence_indicator: [
+      /\b(sexual(ly)?|molest(ed|ation)?|rape(d)?|attempted\s+rape|disrob(ed|ing)|strip(ped)?|cloth(es)?\s+torn|stalk(ing)?|abduct(ion)?|indecent|assault\s+on\s+woman|modesty|forced\s+touch|inappropriate\s+touch|grop(ed|ing)|tear\s+(sari|dupatta|clothes)|outraged\s+her\s+modesty)\b/i,
+      /(यौन\s*उत्पीड़न|बलात्कार|छेड़छाड़|कपड़े\s*फाड़े|बदसुलूकी|निर्वस्त्र|नंगा\s*घुमाया|इज्जत\s*लूटने|अपहरण|दुपट्टा\s*खींचा|अश्लील\s*हरकत|जबरदस्ती\s*छुआ|महिला\s*से\s*बदतमीजी|शीलभंग)/i,
+      /(যৌন\s*হেনস্থা|ধর্ষণ|শ্লীলতাহানি|জামাকাপড়\s*ছিঁড়ে|বিবস্ত্র|ইজ্জত\s*হানি|অপহরণ|অশালীন\s*আচরণ|ওড়না\s*টেনে|মেয়েকে\s*তুলে)/i,
+      /(பாலியல்\s*வன்கொடுமை|கற்பழிப்பு|துன்புறுத்தல்|ஆடைகளை\s*கிழித்தனர்|மானம்\s*பங்கம்|கடத்தல்|அசிங்கமாக\s*நடந்தனர்)/i,
+      /(లైంగిక\s*దాడి|అత్యాచారం|బట్టలు\s*చించేశారు|వేధింపులు|మానభంగం|వివస్త్రను|కిడ్నాప్|అసభ్యంగా)/i,
+      /(लैंगिक\s*अत्याचार|बलात्कार|विनयभंग|कपडे\s*फाडले|विवस्त्र\s*केले|अब्रू\s*लुटण्याचा|अपहरण|अश्लील\s*वर्तन)/i,
+      /\b(balatkar|chedkhani|kapde\s*faad\s*diye|badtameezi|shoshan|molest\s*kiya|izzat\s*lootne|dupatta\s*kheencha|nirvastra\s*kiya|zabardasti\s*touch|abduct\s*kiya)\b/i
+    ],
+
+    extreme_fear_distress: [
+      /\b(terrified|trembl(ing)?|scared|crying|panic|cannot\s+stop\s+shaking|lock(ed)?\s+inside|hide|hiding|in\s+fear|traumatized|shivering|sobbing|helpless|screaming|shook|anxious|nightmare|fear\s+for\s+children|acute\s+fear|in\s+terror)\b/i,
+      /(बहुत\s*डरे\s*हुए|कांप\s*रहे|थर\s*थर\s*कांप|रो\s*रहे|दहशत|कमरे\s*में\s*बंद|छुप\s*गए|बेबस|कांपते\s*हुए|भयभीत|हाथ\s*पैर\s*फूल|चीख\s*पुकार|डर\s*के\s*मारे|बच्चे\s*सहम)/i,
+      /(প্রচণ্ড\s*আতঙ্কে|হাত\s*পা\s*কাঁপছে|ভয়ে\s*কাঁপ|কাঁদছি|চরম\s*ভয়|লুকিয়ে\s*আছি|ভীতসন্ত্রস্ত|অসহায়|আতঙ্কিত|বাচ্চারা\s*ভয়ে)/i,
+      /(மிகுந்த\s*பயம்|நடுங்குகிறோம்|அழுகிறோம்|பீதி|ஒளிந்து\s*கொண்டிருக்கிறோம்|பயந்து\s*போய்|அச்சம்|குழந்தைகள்\s*அஞ்சுகின்றனர்)/i,
+      /(చాలా\s*భయంగా\s*ఉంది|వణుకుతున్నాం|ఏడుస్తున్నాం|భయాందోళన|దాక్కున్నాం|నిస్సహాయంగా|పిల్లలు\s*భయపడుతున్నారు)/i,
+      /(प्रचंड\s*भीती|थरथर\s*कापत|रडत\s*आहेत|दहशतीत|लपून\s*बसलो|घाबरलो\s*आहे|मुले\s*घाबरली)/i,
+      /\b(bohot\s*dare\s*hue|kaanp\s*rahe|thar\s*thar\s*kaanp|ro\s*rahe|dehshat|chup\s*gaye|dar\s*lag\s*raha|traumatized|helpless|scared\s*hai|dar\s*ke\s*maare|bacche\s*sehame)\b/i
+    ],
+
+    intimidation_retaliation_threat: [
+      /\b(threaten(ed)?\s+to\s+withdraw|withdraw\s+(the\s+)?(fir|case|complaint)|retaliat(e|ion)|warn(ed)?|false\s+(case|charge|fir|counter\s*case)|ruin|teach\s+a\s+lesson|consequences?|dare\s+not|bribe(d)?\s+police|police\s+refused|station\s+did\s+nothing|corrupt\s+police|drop\s+the\s+charges|compromise|force\s+to\s+sign|witness\s+threat)\b/i,
+      /(शिकायत\s*वापस\s*लो|केस\s*वापस|बदला\s*लेंगे|सबक\s*सिखाएंगे|झूठा\s*केस|पुलिस\s*को\s*खरीद|परिणाम\s*भुगतने|पुलिस\s*नहीं\s*सुन\s*रही|थाने\s*में\s*भगा\s*दिया|गवाह\s*को\s*धमकी|राजीनामा\s*का\s*दबाव|फंसा\s*देंगे)/i,
+      /(মামলা\s*তুলে\s*নেওয়ার\s*হুমকি|কেস\s*তুলে\s*নে|প্রতিশোধ|শিক্ষা\s*দেওয়ার\s*হুমকি|মিথ্যে\s*মামলা|পুলিশকে\s*ঘুষ|পুলিশ\s*শুনছে\s*না|সাক্ষীকে\s*হুমকি|আপসের\s*চাপ)/i,
+      /(புகாரை\s*வாபஸ்\s*பெற\s*மிரட்டல்|வழக்கை\s*வாபஸ்|பழிவாங்குதல்|பாடம்\s*புகட்டுவோம்|பொய்\s*வழக்கு|போலீசை\s*வாங்கிவிட்டோம்|காவல்துறை\s*மறுப்பு|சாட்சியை\s*மிரட்டல்)/i,
+      /(ఫిర్యాదు\s*వెనక్కి\s*తీసుకోవాలని|కేసు\s*వెనక్కి|ప్రతీకారం|బుద్ధి\s*చెబుతాం|తప్పుడు\s*కేసులు|పోలీసులు\s*పట్టించుకోవట్లేదు|సాక్షులను\s*బెదిరింపు)/i,
+      /(तक्रार\s*मागे\s*घेण्याची\s*धमकी|केस\s*मागे|बदला\s*घेण्याची\s*भाषा|धडा\s*शिकवू|खोटा\s*गुन्हा|पोलिसांनी\s*दाखल\s*केला\s*नाही|साक्षीदाराला\s*धमकी)/i,
+      /\b(case\s*wapas\s*lo|complaint\s*withdraw|badla\s*lenge|sabak\s*sikhayenge|jhootha\s*case|police\s*kharid\s*li|consequences\s*bhugto|police\s*nahi\s*sun\s*rahi|fir\s*nahi\s*likhi|rajinama\s*ka\s*pressure|fansa\s*denge)\b/i
+    ],
+
+    social_isolation: [
+      /\b(boycott(ed)?|well\s+water|borewell|panchayat\s+(order|decree)|nobody\s+speaks|cut\s+off|barred|isolated|banished|ostracized|caste\s+slur|untouchability|denied\s+(entry|water|road|access)|hookah\s*pani|temple\s+entry|cremation\s+denied|caste\s+abuse|social\s+boycott|refused\s+water|untouchable|barred\s+from\s+shops)\b/i,
+      /(सामाजिक\s*बहिष्कार|कुएं\s*से\s*पानी\s*बंद|छुआछूत|हुक्का\s*पानी\s*बंद|दुकान\s*से\s*सामान\s*नहीं|पंचायत\s*का\s*फरमान|गांव\s*से\s*निकाल|जातिसूचक\s*गाली|मंदिर\s*में\s*प्रवेश\s*रोका|रास्ता\s*रोका|श्मशान\s*में\s*रोक|पानी\s*नहीं\s*भरने)/i,
+      /(সমাজচ্যুত|কুয়োর\s*জল\s*নিতে\s*বাধা|অস্পৃশ্যতা|একঘরে|দোকান\s*থেকে\s*জিনিস\s*দেয়\s*না|পঞ্চায়েতের\s*নিদান|জাতিগত\s*গালাগালি|মন্দিরে\s*ঢুকতে\s*দেয়\s*না|জল\s*নিতে\s*নিষেধ|শ্মশানে\s*বাধা)/i,
+      /(ஊர்\s*விலக்கம்|தண்ணீர்\s*எடுக்க\s*தடை|தீண்டாமை|சமூகப்\s*புறக்கணிப்பு|கடைகளில்\s*பொருட்கள்\s*மறுப்பு|சாதி\s*திட்டு|கோவில்\s*நுழைவு\s*தடை|சுடுகாடு\s*தடை)/i,
+      /(సాంఘిక\s*బహిష్కరణ|నీళ్లు\s*తోడుకోనివ్వడం\s*లేదు|అంటరానితనం|ఊరి\s*నుంచి\s*వెలివేశారు|కుల\s*దూషణ|గుడిలోకి\s*రానివ్వడం\s*లేదు|దుకాణాల్లో\s*సరుకులు\s*ఇవ్వట్లేదు)/i,
+      /(वाळीत\s*टाकले|विहिरीचे\s*पाणी\s*बंद|अस्पृश्यता|सामाजिक\s*बहिष्कार|दुकानात\s*सामान\s*नाही|जातीवाचक\s*शिव्या|पाणी\s*भरू\s*देत\s*नाहीत|मंदिरात\s*प्रवेश\s*बंदी)/i,
+      /\b(samajik\s*bahishkar|paani\s*nahi\s*bharne\s*dete|kuye\s*se\s*bhaga|hookah\s*pani\s*band|chhuachhut|ekghare|jaati\s*suchak\s*gaali|boycott\s*kar\s*diya|rasta\s*rok\s*diya|dukan\s*se\s*saman\s*band)\b/i
+    ],
+
+    forced_displacement: [
+      /\b(bulldoz(ed|er)?|jcb|evict(ed)?|demolish(ed)?|house\s+destroyed|flee|fled|fleeing|run\s+away|lost\s+(our\s+)?land|patta(\s+land)?|forced\s+out|hut\s+burnt|homeless|displaced|crops\s+destroyed|lands?\s+grabbed|rendered\s+homeless|eviction|demolition\s+drive)\b/i,
+      /(घर\s*गिरा\s*दिया|बुलडोजर|जमीन\s*छीन|गांव\s*छोड़कर\s*भाग|बेदखल|झोपड़ी\s*जला|पट्टा\s*जमीन|घर\s*तोड़\s*दिया|फसल\s*नष्ट|बेघर\s*कर\s*दिया|जबरन\s*कब्जा|घर\s*खाली\s*करा)/i,
+      /(ঘর\s*ভেঙে\s*দিয়েছে|উচ্ছেদ|বুলডোজার|জমি\s*দখল|গ্রাম\s*ছেড়ে\s*পালাতে|কুঁড়েঘর\s*পুড়িয়ে|বাড়িছাড়া|ফসল\s*নষ্ট|পাট্টা\s*জমি\s*কেড়ে|গৃহহীন)/i,
+      /(வீட்டை\s*இடித்துவிட்டனர்|நிலத்தை\s*ஆக்கிரமித்தனர்|ஊரை\s*விட்டு\s*வெளியேற்றினர்|குடிசையை\s*கொளுத்தினர்|புல்டோசர்|பட்டா\s*நிலம்|வீடற்றவர்களாக)/i,
+      /(ఇల్లు\s*కూల్చేశారు|భూమి\s*లాక్కున్నారు|ఊరు\s*విడిచి\s*పారిపోయాం|గుడిసెను\s*తగలబెట్టారు|బుల్డోజర్|పట్టా\s*భూమి|నిరాశ్రయులమయ్యాం)/i,
+      /(घर\s*पाडले|जमिनीवरून\s*हाकलून|गाव\s*सोडून\s*पळावे|झोपडी\s*जाळली|बुलडोझर\s*फिरवला|पीक\s*उध्वस्त|बेघर\s*केले|जमीन\s*बळकावली)/i,
+      /\b(ghar\s*tod\s*diya|ghar\s*gira\s*diya|jcb\s*chala\s*di|zameen\s*chheen\s*li|gaon\s*chhodna\s*pada|bedakhal\s*kar\s*diya|jhuggi\s*jala\s*di|bulldoze\s*kar\s*diya|fasal\s*kharab\s*kar\s*di|beghar\s*kar\s*diya)\b/i
+    ]
+  };
+
+  // 3. INTENT PATTERNS FOR CONVERSATIONAL FLOW
+  const INTENT_PATTERNS = {
+    LOCATION_INFO: /\b(village|district|state|ward|colony|nagar|pura|gali|road|near|pune|delhi|mumbai|lucknow|patna|bihar|up|maharashtra|rajasthan|karnataka|tamil\s+nadu|bengal|gaon|zilla|thana|in\s+[A-Z][a-z]+)\b|(गांव|गाँव|ग्राम|जिला|ज़िला|क्षेत्र|मोहल्ला|नगर|গ্রাম|জেলা)/i,
+    POLICE_HELP: /\b(police|station|fir|complaint|daroga|sp|dsp|inspector|call\s+police|send\s+police|police\s+help|thana|thaane)\b|(पुलिस|थाना|थाने|दरोगा|एफआईआर|এফআইআর|পুলিশ|காவல்துறை)/i,
+    WHAT_TO_DO: /\b(what\s+(should|can)\s+(i|we)\s+do|how\s+to|what\s+next|guide\s+me|help\s+me|kya\s+karein|batao|kya\s+kare|kuch\s+batao|advice)\b|(क्या\s*करें|मार्गदर्शन|क्या\s*करना\s*होगा|उपाय\s*बताएं|কি\s*করব)/i,
+    AFFIRM_SAFE: /\b(locked\s+inside|safe\s+room|we\s+are\s+safe|room\s+is\s+locked|bolted|surakshit|darwaza\s+band\s+hai|andar\s+chup\s+gaye)\b|(कमरे\s*में\s*(हैं|बंद|छुप)|सुरक्षित\s*कमरे|दरवाजा\s*बंद|ভেতরে\s*আছি|সুরক্ষিত|নিরাপদ)/i,
+    FAMILY_VULNERABILITY: /\b(brother|sister|mother|father|children|child|baby|kids|daughter|son|wife|husband|parents|old|elderly|pregnant|bacche|maa|bhai|behan|bhabhi)\b|(बच्चे|बच्ची|माँ|माताजी|पिताजी|भाई|बहन|पत्नी|बेटी|बुजुर्ग|बजुर्ग|गर्भवती|বাচ্চা|মা|বাবা)/i,
+    WEAPONS_CONFIRMED: /\b(swords?|rods?|iron|guns?|pistol|lathi|danda|fire|stones?|petrol|hathiyar|chaku|talwar|kande)\b|(हथियार|रॉड|लाठी|डंडे|बंदूक|पिस्तौल|तलवार|चाकू|पत्थर|অস্ত্র|লাঠি|বন্দুক|তলোয়ার)/i,
+    GREETING: /\b(hello|hi|namaste|pranam|good\s+morning|good\s+evening)\b|(नमस्ते|नमस्कार|प्रणाम|নমস্কার|வணக்கம்)/i
+  };
+
+  // 4. MULTILINGUAL SCRIPT DETECTOR
+  function detectLanguage(text) {
+    if (!text) return 'en';
+
+    if (/[\u0900-\u097F]/.test(text)) {
+      if (/(आहे|नाही|आहोत|केले|होते|माहिती|वाळीत|सांगा|करायचे|पडला)/i.test(text)) return 'mr';
+      return 'hi';
+    }
+    if (/[\u0980-\u09FF]/.test(text)) return 'bn';
+    if (/[\u0B80-\u0BFF]/.test(text)) return 'ta';
+    if (/[\u0C00-\u0C7F]/.test(text)) return 'te';
+
+    const engWords = text.match(/\b(the|is|are|am|was|were|we|they|my|our|you|he|she|it|with|from|have|has|had|can|could|should|would|what|where|who|why|how|please|help|refused|outside|inside|brother|sister|family|room|danger|right\s+now)\b/gi) || [];
+    const hinWords = text.match(/\b(hai|hain|kya|kyun|kaise|mera|meri|mere|hamara|hamare|aap|tum|karein|karo|bolo|nahi|mat|bohot|bahar|hathiyar|bachao|raha|rahe|rahi|darwaza|chhod|thhe|thaa|khatra|aur|bhi|laathi|marne|madad|chot|dhamki)\b/gi) || [];
+
+    if (hinWords.length >= 2 && hinWords.length >= engWords.length) {
+      return 'hinglish';
+    }
+
+    return 'en';
+  }
+
+  // 5. LOCAL STORAGE REPOSITORY
+  const STORAGE_KEY_CASES = 'nhaa_offline_cases_db';
+  const STORAGE_KEY_ACTIVE = 'nhaa_offline_active_case';
+
+  function getStoredCases() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_CASES);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      console.warn("Storage read error:", e);
+      return {};
+    }
+  }
+
+  function saveCaseRecord(caseRecord) {
+    try {
+      const cases = getStoredCases();
+      cases[caseRecord.id] = caseRecord;
+      localStorage.setItem(STORAGE_KEY_CASES, JSON.stringify(cases));
+      localStorage.setItem(STORAGE_KEY_ACTIVE, caseRecord.id);
+    } catch (e) {
+      console.error("Storage save error:", e);
+    }
+  }
+
+  function generateCaseId() {
+    const year = new Date().getFullYear();
+    const cases = getStoredCases();
+    const existingCount = Object.keys(cases).length;
+    const num = String(existingCount + 101).padStart(5, '0');
+    return `NHAA-${year}-${num}`;
+  }
+
+  /**
+   * Structured Multi-Turn Conversational Entity Extractor
+   * Accumulates critical safety entities across all chat turns
+   */
+  function extractConversationalEntities(text, existingContext = {}) {
+    const ctx = {
+      location: existingContext.location || null,
+      perpetrators: existingContext.perpetrators || null,
+      weapons: Array.isArray(existingContext.weapons) ? [...existingContext.weapons] : [],
+      safetyStatus: existingContext.safetyStatus || null,
+      vulnerableMembers: Array.isArray(existingContext.vulnerableMembers) ? [...existingContext.vulnerableMembers] : [],
+      injuries: existingContext.injuries || null,
+      policeStatus: existingContext.policeStatus || null,
+      disputeCause: existingContext.disputeCause || null,
+      pendingQuestion: existingContext.pendingQuestion || null
+    };
+
+    const clean = text || '';
+
+    // 1. Location extraction (villages, districts, colonies, towns)
+    const invalidLocWords = /^(refused|delay|police|daroga|fir|complaint|inaction|threatened|bribe|outside|inside|house|gate|door|room|bedroom|kitchen|fighting|trying|breaking|hospital|clinic|में|से|पर|रहते|हैं)$/i;
+
+    const inAtMatch = clean.match(/(?:in|at|near|from)\s+([A-Za-z\u0900-\u097F\u0980-\u09FF\u0B80-\u0BFF\u0C00-\u0C7F\s,]+?)(?=(?:\s+(?:with|and|is|are|they|we|having|facing|threatened|trying|where|में|से|पर))|[.\n;]|$)/i);
+    const preMatch = clean.match(/(?:village|gaon|gram|district|zilla|colony|nagar|pura|गांव|गाँव|ग्राम|जिला|ज़िला|क्षेत्र|मोहल्ला|नगर|গ্রাম|জেলা)\s+(?!(?:में|से|पर|का|के|की|is|are|in|from|at)\s+)([A-Za-z\u0900-\u097F\u0980-\u09FF\u0B80-\u0BFF\u0C00-\u0C7F]+(?:\s+[A-Za-z\u0900-\u097F\u0980-\u09FF\u0B80-\u0BFF\u0C00-\u0C7F]+)?(?:,\s*(?:village|gaon|gram|district|zilla|गांव|गाँव|जिला|ज़िला|গ্রাম|জেলা)\s+[A-Za-z\u0900-\u097F\u0980-\u09FF\u0B80-\u0BFF\u0C00-\u0C7F]+)?)/i);
+    const sufMatch = clean.match(/(?:^|[\s,])([A-Za-z\u0900-\u097F\u0980-\u09FF\u0B80-\u0BFF\u0C00-\u0C7F]+(?:\s+[A-Za-z\u0900-\u097F\u0980-\u09FF\u0B80-\u0BFF\u0C00-\u0C7F]+)?)\s*(?:village|gaon|gram|district|zilla|colony|nagar|pura|गांव|गाँव|ग्राम|जिला|ज़िला|क्षेत्र|मोहल्ला|नगर|গ্রাম|জেলা)/i);
+    const cityMatch = clean.match(/\b(Pune|Meerut|Sitapur|Belagavi|Patna|Lucknow|Varanasi|Agra|Jaipur|Bhopal|Ranchi|Raipur|Ahmedabad|Surat|Nagpur|Thane|Kolkata|Howrah|Chennai|Madurai|Coimbatore|Hyderabad|Warangal|Bengaluru|Mysuru|Hubli|Hathras)\b/i);
+
+    let cand = null;
+    if (inAtMatch && /(village|district|gaon|zilla|गांव|गाँव|ग्राम|जिला|ज़िला)/i.test(inAtMatch[1])) {
+      cand = inAtMatch[1].trim();
+    } else if (preMatch && preMatch[1]) {
+      cand = preMatch[1].trim();
+    } else if (sufMatch && sufMatch[1]) {
+      cand = sufMatch[1].trim();
+    } else if (inAtMatch && inAtMatch[1]) {
+      cand = inAtMatch[1].trim();
+    } else if (cityMatch) {
+      cand = cityMatch[0].trim();
+    }
+
+    if (cand) {
+      cand = cand.replace(/^(?:हम|मैं|we|i|hum|mera|hamara|from|at|in|हमारे|আমাদের|আমরা)\s+/i, "").replace(/^[,.\s]+|[,.\s]+$/g, "");
+      if (cand.length >= 3 && cand.length <= 60 && !invalidLocWords.test(cand)) {
+        if (!ctx.location || /(village|district|gaon|zilla|गांव|गाँव|ग्राम|जिला|ज़िला)/i.test(cand)) {
+          ctx.location = cand;
+        }
+      }
+    }
+
+    // Separate Thana / Police Station extraction
+    const thanaMatch = clean.match(/(?:\b(?:thana|police\s+station)\b|(?:थाना|थाने))\s+(?!(?:में|से|पर|को|का|की|के)\s+)([A-Za-z\u0900-\u097F]+(?:\s+[A-Za-z\u0900-\u097F]+)?)/i);
+    if (thanaMatch && thanaMatch[1]) {
+      const tCand = thanaMatch[1].trim();
+      if (tCand.length >= 3 && !invalidLocWords.test(tCand)) {
+        ctx.policeStation = tCand;
+      }
+    }
+
+    // 2. Weapons extraction (Unicode-safe without broken \b boundaries)
+    const weaponDefs = [
+      { name: 'iron rods', pat: /(?:\b(iron\s+rods?|rods?)\b|(लोहे\s*की\s*रॉड|रॉड|রড|கம்பி|రాడ్లు))/i },
+      { name: 'lathis / sticks', pat: /(?:\b(lathis?|danda|sticks?)\b|(लाठी|डंडे|लाठी\s*डंडे|লাঠিসোঁটা|தடி|కట్టెలు))/i },
+      { name: 'firearms / guns', pat: /(?:\b(guns?|pistols?|firearms?|bandook|katta)\b|(तमांचा|बंदूक|पिस्तौल|বন্দুক|துப்பாக்கி|తుపాకీ))/i },
+      { name: 'sharp weapons / knives', pat: /(?:\b(knives|knife|swords?|chaku|talwar)\b|(धारदार|तलवार|चाकू|তলোয়ার|வாள்|கత్తి))/i },
+      { name: 'stones / bricks', pat: /(?:\b(stones?|bricks?|pathrav|patthar)\b|(पत्थर|পাথর|கல்|రాళ్లు))/i },
+      { name: 'petrol / fire / arson', pat: /(?:\b(petrol|fire|arson|kerosene|aag)\b|(जला|আগুন|தீ|నిప్పు))/i }
+    ];
+    weaponDefs.forEach(w => {
+      if (w.pat.test(clean) && !ctx.weapons.includes(w.name)) {
+        ctx.weapons.push(w.name);
+      }
+    });
+
+    // 3. Vulnerable Members / Family (Unicode-safe)
+    const memberDefs = [
+      { name: 'young children / kids', pat: /(?:\b(children|child|kids?|baby|babies|toddler|bacche|baccha)\b|(बच्चे|बच्ची|বাচ্চা|குழந்தைகள்|పిల్లలు))/i },
+      { name: 'elderly parents', pat: /(?:\b(elderly|old\s+(father|mother|parents|man|woman)|grandpa|grandma|bujurg)\b|(बुजुर्ग|बजुर्ग|वृद्ध|முதியோர்|వృద్ధులు))/i },
+      { name: 'mother', pat: /(?:\b(mother|mom|maa|mataji)\b|(माँ|माताजी|মা|தாய்|తల్లి))/i },
+      { name: 'father', pat: /(?:\b(father|dad|pitaji|bapu)\b|(बापू|पिताजी|বাবা|தந்தை|తండ్రి))/i },
+      { name: 'brother', pat: /(?:\b(brother|bhai)\b|(भाई|ভাই|சகோதரன்|సోదరుడు))/i },
+      { name: 'sister', pat: /(?:\b(sister|behan)\b|(बहन|বোন|சகோதரி|సోదரி))/i },
+      { name: 'pregnant woman', pat: /(?:\bpregnant\b|(गर्भवती|গর্ভবতী|கர்ப்பிணி|గర్భిణి))/i },
+      { name: 'wife / daughter', pat: /(?:\b(wife|daughter|bhabhi|patni)\b|(बेटी|पत्नी|मेये|মেয়ে|স্ত্রী|மனைவி|భార్య|కూతురు))/i }
+    ];
+    memberDefs.forEach(m => {
+      if (m.pat.test(clean) && !ctx.vulnerableMembers.includes(m.name)) {
+        ctx.vulnerableMembers.push(m.name);
+      }
+    });
+
+    // 4. Perpetrators / Mob
+    const perpMatch = clean.match(/(?:by|from|group of|mob of|assailants?|attackers?|gang of)\s+([A-Za-z0-9\s]{3,40}?)(?=[.,\n]|\b(?:armed|with|outside|threatened)\b|$)/i) ||
+                      clean.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?:and\s+(?:his|their)\s+(?:men|group|gang|family|brothers)|is\s+threatening|attacked)\b/);
+    if (perpMatch && perpMatch[1]) {
+      const pCandidate = perpMatch[1].trim();
+      if (pCandidate.length >= 3 && !/(outside|inside|house|gate|door|room)/i.test(pCandidate)) {
+        ctx.perpetrators = pCandidate;
+      }
+    } else if (/\b(sarpanch|mukhiya|pradhan|landlord|zamindar|village head|ward member)\b|(सरपंच|मुखिया|प्रधान|जमींदार)/i.test(clean)) {
+      const roleMatch = clean.match(/\b(sarpanch|mukhiya|pradhan|landlord|zamindar|village head|ward member)\b|(सरपंच|मुखिया|प्रधान|जमींदार)/i);
+      if (roleMatch) ctx.perpetrators = roleMatch[0];
+    } else if (/\b(mob|crowd|assailants|goons|gunde|bheed)\b|(भीड़|उपद्रवी|गुंडे|দল|கும்பல்|గుంపు)/i.test(clean)) {
+      if (!ctx.perpetrators) ctx.perpetrators = "armed mob outside";
+    }
+
+    // 5. Safety status
+    if (/\b(locked\s+(inside|in\s+(?:the\s+)?(?:room|bedroom|kitchen|house))|safe\s+room|bolted\s+the\s+door|andar\s+band|surakshit\s+kamre)\b|(कमरे\s*में\s*बंद|सुरक्षित\s*कमरे|अंदर\s*से\s*बंद|दरवाजा\s*बंद|দরজা\s*বন্ধ|ভেতরে\s*আছি)/i.test(clean)) {
+      ctx.safetyStatus = "locked inside secure room";
+    } else if (/\b(breaking\s+(in|the\s+door|gate|window)|smashed|battering|tod\s+rahe|darwaza\s+tod)\b|(दरवाजा\s*तोड़|दरवाजा\s*पीट|खिड़की\s*तोड़|দরজা\s*ভাঙ)/i.test(clean)) {
+      ctx.safetyStatus = "doors/gates actively being battered or breached";
+    } else if (/\b(trapped|nowhere\s+to\s+go|surrounded|chasing\s+us|cornered)\b|(फंसे\s*हैं|घेर\s*लिया|আটকে\s*পড়েছি)/i.test(clean)) {
+      ctx.safetyStatus = "trapped / cornered by assailants";
+    } else if (/\b(fled|fleeing|running\s+away|hiding\s+in\s+fields?)\b|(भाग\s*गए|छुप\s*गए|পালিয়ে|লুকিয়ে)/i.test(clean)) {
+      ctx.safetyStatus = "fled / hiding in vicinity";
+    }
+
+    // 6. Injuries
+    if (/\b(head\s+injury|bleeding|broken|fracture|stab|wounds?|hospital\s+refused|khoon|chot)\b|(खून|सिर\s*में\s*चोट|टांके|मारपीट|রক্তক্ষরণ|আঘাত|காயம்)/i.test(clean)) {
+      const injMatch = clean.match(/(head\s+injury|bleeding(?:\s+profusely)?|broken\s+(?:arm|leg|bones?)|fracture|stab\s+wounds?|severe\s+pain|chot|khoon|खून\s*बह|सिर\s*में\s*चोट|टांके|मारपीट|রক্ত)/i);
+      ctx.injuries = injMatch ? injMatch[0] : "physical trauma / injury";
+    }
+
+    // 7. Police status
+    if (/\b(called\s+112|dialed\s+112|informed\s+police|police\s+not\s+coming|police\s+refused|fir\s+not\s+registered|thana\s+refused|police|thana|station|fir)\b|(थाने\s*में\s*भगा|112\s*मिलाया|पुलिस|थाना|थाने|दरोगा|एफआईआर|পুলিশ|এফআইআর)/i.test(clean)) {
+      if (/\b(refused|delay|not\s+coming|bribe|inaction|baga\s+diya|nahi\s+aayi|nahi\s+likhi)\b|(मना|नहीं\s*आ|भगा|नहीं\s*लिख|নিচ্ছে\s*না|नहीं\s*सुन|गाली|मदद\s*नहीं)/i.test(clean)) {
+        ctx.policeStatus = "police inaction / FIR refusal reported";
+      } else {
+        ctx.policeStatus = "police alerted via 112";
+      }
+    }
+
+    // 8. Dispute cause
+    if (/\b(land\s+dispute|patta|zameen|eviction|demolition|social\s+boycott|well\s+water|untouchability|refused\s+forced\s+labor|caste\s+abuse)\b|(जातिसूचक|सामाजिक\s*बहिष्कार|जमीन\s*विवाद|पट्टा|बुलडोजर|কুয়োর\s*জল|একঘরে)/i.test(clean)) {
+      const dMatch = clean.match(/(land\s+dispute|eviction|social\s+boycott|well\s+water\s+access|patta\s+land|caste\s+discrimination|zameen|bahishkar|जमीन\s*विवाद|सामाजिक\s*बहिष्कार)/i);
+      ctx.disputeCause = dMatch ? dMatch[0] : "caste discrimination / land atrocity";
+    }
+
+    return ctx;
+  }
+
+  // 6. OFFLINE AI ENGINE CLASS
+  class OfflineAIEngine {
+    constructor(config = {}) {
+      this.sensitivityMode = config.sensitivityMode || 'high';
+      this.selectedLanguage = config.selectedLanguage || 'auto';
+      this.currentCase = null;
+      this.conversationState = {
+        turnCount: 0,
+        askedLocation: false,
+        askedLocationAcknowledged: false,
+        askedInjuries: false,
+        askedPerpetrators: false,
+        askedSafety: false,
+        askedPolice: false,
+        askedFamily: false,
+        lastTheme: null
+      };
+    }
+
+    initSession(citizenData = {}) {
+      const activeId = localStorage.getItem(STORAGE_KEY_ACTIVE);
+      const allCases = getStoredCases();
+
+      if (activeId && allCases[activeId] && (!citizenData.forceNew)) {
+        this.currentCase = allCases[activeId];
+        if (citizenData.name && citizenData.name !== 'Citizen Complainant') {
+          this.currentCase.complainant.name = citizenData.name;
+        }
+        if (citizenData.phone) {
+          this.currentCase.complainant.phone = citizenData.phone;
+        }
+
+        // Ensure Context Object exists
+        if (!this.currentCase.context) {
+          this.currentCase.context = {
+            location: null,
+            perpetrators: null,
+            weapons: [],
+            safetyStatus: null,
+            vulnerableMembers: [],
+            injuries: null,
+            policeStatus: null,
+            disputeCause: null,
+            pendingQuestion: null
+          };
+        }
+
+        // Restore conversation state completely from persistent case record
+        if (this.currentCase.conversationState) {
+          this.conversationState = { ...this.currentCase.conversationState };
+        } else {
+          this.conversationState = {
+            turnCount: (this.currentCase.messages || []).filter(m => m.sender === 'USER').length,
+            askedLocation: Boolean(this.currentCase.context && this.currentCase.context.location),
+            askedLocationAcknowledged: Boolean(this.currentCase.context && this.currentCase.context.location),
+            askedInjuries: Boolean(this.currentCase.context && this.currentCase.context.injuries),
+            askedPerpetrators: Boolean(this.currentCase.context && this.currentCase.context.perpetrators),
+            askedSafety: Boolean(this.currentCase.context && this.currentCase.context.safetyStatus),
+            askedPolice: Boolean(this.currentCase.context && this.currentCase.context.policeStatus),
+            askedFamily: Boolean(this.currentCase.context && this.currentCase.context.vulnerableMembers && this.currentCase.context.vulnerableMembers.length > 0),
+            lastTheme: null
+          };
+        }
+      } else {
+        const newId = generateCaseId();
+        const now = new Date().toISOString();
+        const nowFormatted = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
+
+        this.currentCase = {
+          id: newId,
+          createdAt: now,
+          createdFormatted: nowFormatted,
+          updatedAt: now,
+          complainant: {
+            name: citizenData.name || 'Kavita Verma',
+            phone: citizenData.phone || '9876543210',
+            role: citizenData.role || 'Citizen / Complainant'
+          },
+          channel: '24x7 Web AI Crisis Chat (Offline)',
+          status: 'ACTIVE_TRIAGE',
+          sviScore: 0,
+          riskBand: 'LOW',
+          criticalOverride: false,
+          overrideReasons: [],
+          detectedIndicators: [],
+          context: {
+            location: null,
+            perpetrators: null,
+            weapons: [],
+            safetyStatus: null,
+            vulnerableMembers: [],
+            injuries: null,
+            policeStatus: null,
+            disputeCause: null,
+            pendingQuestion: 'initial'
+          },
+          conversationState: {
+            turnCount: 0,
+            askedLocation: false,
+            askedLocationAcknowledged: false,
+            askedInjuries: false,
+            askedPerpetrators: false,
+            askedSafety: false,
+            askedPolice: false,
+            askedFamily: false,
+            lastTheme: null
+          },
+          sviMetadata: {
+            criteria_version: "SVI-8.1",
+            formula: "SVI = MIN(100, sum of applicable approved criterion weights)",
+            raw_sum: 0
+          },
+          messages: [
+            {
+              sender: 'BOT',
+              text: "Namaste. You are securely connected to the National Helpline Against Atrocities (14566) AI Crisis Assessment Module.\n\nAll statements are strictly confidential and protected under the SC/ST PoA Act 1989 & PCR Act 1955. Please tell us what happened or what threat you are currently facing.",
+              timestamp: nowFormatted,
+              sviSnapshot: 0
+            }
+          ],
+          auditLogs: [
+            { action: 'SESSION_INITIALIZED', details: 'Case session initialized via Local Offline AI Engine (SVI-8.1 Standard)', timestamp: nowFormatted }
+          ]
+        };
+
+        this.conversationState = { ...this.currentCase.conversationState };
+        saveCaseRecord(this.currentCase);
+      }
+
+      return this.currentCase;
+    }
+
+    startNewSession(citizenData = {}) {
+      return this.initSession({ ...citizenData, forceNew: true });
+    }
+
+    setLanguage(langCode) {
+      this.selectedLanguage = langCode;
+    }
+
+    setSensitivity(mode) {
+      this.sensitivityMode = mode === 'standard' ? 'standard' : 'high';
+    }
+
+    analyzeText(text) {
+      const newlyDetected = [];
+      const nowFormatted = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      for (const [critKey, patterns] of Object.entries(MULTILINGUAL_PATTERNS)) {
+        for (const pattern of patterns) {
+          const match = pattern.exec(text);
+          if (match) {
+            const def = CRITERIA_DEFINITIONS[critKey];
+            const matchIndex = match.index;
+            const start = Math.max(0, matchIndex - 20);
+            const end = Math.min(text.length, matchIndex + match[0].length + 25);
+            const evidence = text.substring(start, end).trim();
+
+            const baseConf = this.sensitivityMode === 'high' ? 0.95 : 0.90;
+            const jitter = Math.floor(Math.random() * 4) / 100;
+
+            newlyDetected.push({
+              key: critKey,
+              name: def.name,
+              category: def.category,
+              weight: def.weight,
+              is_override: def.is_override,
+              evidence: evidence || match[0],
+              confidence: Number((baseConf + jitter).toFixed(2)),
+              timestamp: nowFormatted
+            });
+            break;
+          }
+        }
+      }
+
+      return newlyDetected;
+    }
+
+    /**
+     * Compute Deterministic SVI Score (Section 8.4) and Enforce Section 8.3 Overrides
+     * Formula: SVI = MIN(100, sum of applicable approved criterion weights)
+     * Overrides: If immediate danger=true, active self-harm emergency=true,
+     * or life-threatening medical emergency=true, final classification = CRITICAL regardless of score.
+     */
+    calculateSVI(allIndicators) {
+      const uniqueKeys = new Set();
+      let sumOfApplicableWeights = 0;
+      const triggeredDetails = [];
+      const overrideReasons = [];
+
+      for (const ind of allIndicators) {
+        if (!uniqueKeys.has(ind.key)) {
+          uniqueKeys.add(ind.key);
+          const def = CRITERIA_DEFINITIONS[ind.key];
+          if (def) {
+            sumOfApplicableWeights += def.weight;
+            triggeredDetails.push({
+              key: ind.key,
+              name: def.name,
+              category: def.category,
+              weight: def.weight,
+              is_override: def.is_override,
+              evidence: ind.evidence || '',
+              confidence: ind.confidence || 0.95,
+              timestamp: ind.timestamp || ''
+            });
+          }
+        }
+      }
+
+      // Strictly Section 8.4 Formula: SVI = MIN(100, sum of applicable approved criterion weights)
+      const finalScore = Math.min(100, sumOfApplicableWeights);
+
+      // Section 8.3: Critical Overrides
+      const isImmediateDanger = uniqueKeys.has('immediate_physical_danger');
+      const isActiveSelfHarm = uniqueKeys.has('self_harm_indication');
+      const isMedicalEmergency = uniqueKeys.has('medical_emergency');
+
+      if (isImmediateDanger) {
+        overrideReasons.push("Immediate Physical Danger (weight: 25)");
+      }
+      if (isActiveSelfHarm) {
+        overrideReasons.push("Active Self-Harm Emergency (weight: 30)");
+      }
+      if (isMedicalEmergency) {
+        overrideReasons.push("Life-Threatening Medical Emergency (weight: 25)");
+      }
+
+      const hasCriticalOverride = Boolean(isImmediateDanger || isActiveSelfHarm || isMedicalEmergency);
+
+      let band = 'LOW';
+      let prototypeMeaning = "Routine administrative follow-up; dispatch automated helpline informational packet.";
+
+      if (hasCriticalOverride) {
+        band = 'CRITICAL';
+        prototypeMeaning = `CRITICAL (Section 8.3 Override Triggered: ${overrideReasons.join(', ')}): Immediate dispatch alert to State Nodal Officer & local SP/DSP; stay-on-line crisis support.`;
+      } else if (finalScore >= 75) {
+        band = 'CRITICAL';
+        prototypeMeaning = "CRITICAL: Urgent triage within 30 minutes; activate emergency protection team under PoA Act.";
+      } else if (finalScore >= 50) {
+        band = 'HIGH';
+        prototypeMeaning = "HIGH: Priority officer review within 2 hours; provide legal defense counsel referral.";
+      } else if (finalScore >= 25) {
+        band = 'MODERATE';
+        prototypeMeaning = "MODERATE: Standard officer review within 24 hours; connect to district psychosocial counseling cell.";
+      } else {
+        band = 'LOW';
+        prototypeMeaning = "LOW: Routine administrative follow-up; dispatch automated helpline informational packet.";
+      }
+
+      return {
+        score: finalScore,
+        raw_sum: sumOfApplicableWeights,
+        formula: "SVI = MIN(100, sum of applicable approved criterion weights)",
+        criteria_version: "SVI-8.1",
+        band: band,
+        criticalOverride: hasCriticalOverride,
+        overrideReasons: overrideReasons,
+        isImmediateDanger: isImmediateDanger,
+        isActiveSelfHarm: isActiveSelfHarm,
+        isMedicalEmergency: isMedicalEmergency,
+        triggeredCount: uniqueKeys.size,
+        triggeredDetails: triggeredDetails,
+        triggeredNames: triggeredDetails.map(t => t.name),
+        recommendedAction: prototypeMeaning
+      };
+    }
+
+    // Alias for backward compatibility
+    computeProgressiveSVI(allIndicators) {
+      return this.calculateSVI(allIndicators);
+    }
+
+    /**
+     * Context-Aware, Multi-Turn Response Generator
+     * Maintains true conversational memory, extracts entities, and eliminates repetition!
+     */
+    generateDynamicResponse(cleanText, newIndicators, sviResult, lang) {
+      // 1. Accumulate Entities into persistent Case Context
+      this.currentCase.context = extractConversationalEntities(cleanText, this.currentCase.context);
+      const ctx = this.currentCase.context;
+      const state = this.conversationState;
+      state.turnCount++;
+
+      // 2. Self-Harm Immediate Intercept (Highest Clinical Priority)
+      const hasSelfHarm = newIndicators.some(i => i.key === 'self_harm_indication') ||
+                          /\b(suicide|end\s+my\s+life|kill\s+myself|want\s+to\s+die|poison|खुदकुशी|आत्महत्या|जान\s*दे\s*दूंगा)\b/i.test(cleanText);
+      if (hasSelfHarm) {
+        state.lastTheme = 'self_harm';
+        ctx.pendingQuestion = 'self_harm_check';
+        return this.getSelfHarmResponse(lang);
+      }
+
+      // 3. Active Physical Breach / Doors Battered / Mob Entering (Critical Physical Threat)
+      const isBreaching = /\b(breaking\s+(in|the\s+door|the\s+gate|windows?)|smashed|battering|tod\s+rahe|darwaza\s+tod|दरवाजा\s*तोड़|দরজা\s*ভাঙ|கதவை\s*உடை|குடிசையை|door\s+broke|entering\s+now)\b/i.test(cleanText);
+      if (isBreaching && state.lastTheme !== 'breach_emergency') {
+        state.lastTheme = 'breach_emergency';
+        state.askedSafety = true;
+        ctx.safetyStatus = "doors/gates actively being battered or breached";
+        ctx.pendingQuestion = 'barricade_check';
+        return this.getBreachEmergencyResponse(ctx, lang);
+      }
+
+      // 4. Medical / Physical Trauma Report
+      const hasInjury = newIndicators.some(i => i.key === 'serious_physical_injury' || i.key === 'medical_emergency') ||
+                        /\b(bleed|bleeding|wound|hurt|injury|doctor|hospital|broken|fracture|chot|khoon|खून|चोट|রক্ত|காயம்)\b/i.test(cleanText);
+      if (hasInjury && !state.askedInjuries) {
+        state.lastTheme = 'injury_medical';
+        state.askedInjuries = true;
+        ctx.pendingQuestion = 'hospital_refusal';
+        return this.getMedicalResponse(ctx, cleanText, lang);
+      }
+
+      // 5. First-time active danger prompt (Critical Safety Priority)
+      const hasImmediateDanger = newIndicators.some(i => i.key === 'immediate_physical_danger');
+      if (hasImmediateDanger && state.turnCount <= 2 && state.lastTheme !== 'immediate_danger_first' && !state.askedSafety) {
+        state.lastTheme = 'immediate_danger_first';
+        state.askedSafety = true;
+        return this.getImmediateDangerFirstResponse(ctx, lang);
+      }
+
+      // 6. Safe Room / Inside Confirmation Provided
+      const hasSafeAffirmation = INTENT_PATTERNS.AFFIRM_SAFE.test(cleanText) ||
+                                 /\b(yes\s+(we\s+are\s+)?locked|locked\s+inside|safe\s+room|andar\s+hain)\b|(कमरे\s*में\s*(हैं|बंद|छुप)|सुरक्षित\s*कमरे|दरवाजा\s*बंद|ভেতরে\s*আছি)/i.test(cleanText);
+      if (hasSafeAffirmation && state.lastTheme !== 'safe_confirmed') {
+        state.lastTheme = 'safe_confirmed';
+        state.askedSafety = true;
+        ctx.safetyStatus = "locked inside secure room";
+        return this.getSafeAffirmationResponse(ctx, lang);
+      }
+
+      // 7. Police Inquiry or Police Inaction
+      const isPoliceRelated = INTENT_PATTERNS.POLICE_HELP.test(cleanText) ||
+                              /\b(police|station|fir|complaint|daroga|sp|dsp|112|thana)\b|(पुलिस|थाना|थाने|दरोगा|एफआईआर|পুলিশ|காவல்துறை)/i.test(cleanText);
+      const isPoliceInaction = /\b(refused|delay|not\s+coming|bribe|inaction|baga\s+diya|nahi\s+aayi|nahi\s+likhi|manaa|sun\s+nahi)\b|(मना|नहीं\s*आ|भगा|नहीं\s*लिख|नहीं\s*सुन|गाली|मदद\s*नहीं)/i.test(cleanText);
+      if (isPoliceRelated && !state.askedPolice && isPoliceInaction) {
+        state.lastTheme = 'police_inquiry';
+        state.askedPolice = true;
+        ctx.pendingQuestion = 'station_name';
+        return this.getPoliceInquiryResponse(ctx, cleanText, lang);
+      }
+
+      // 8. Action Guidance ("What should I do?")
+      const isAskingWhatToDo = INTENT_PATTERNS.WHAT_TO_DO.test(cleanText);
+      if (isAskingWhatToDo && state.lastTheme !== 'action_guidance') {
+        state.lastTheme = 'action_guidance';
+        return this.getActionGuidanceResponse(ctx, sviResult, lang);
+      }
+
+      // 9. Location Info Provided
+      const hasLocationKeyword = INTENT_PATTERNS.LOCATION_INFO.test(cleanText);
+      if ((hasLocationKeyword || ctx.location) && !state.askedLocationAcknowledged && state.lastTheme !== 'location_ack') {
+        state.lastTheme = 'location_ack';
+        state.askedLocation = true;
+        state.askedLocationAcknowledged = true;
+        return this.getLocationAckResponse(ctx, lang);
+      }
+
+      // 10. Perpetrators / Assailants Named
+      const mentionsPerpetrators = Boolean(ctx.perpetrators || ctx.weapons.length > 0) &&
+                                  (/\b(gang|men|brothers|sarpanch|pradhan|goons|gunde|hathiyar|rods?|lathi|weapons?)\b/i.test(cleanText) || /(भीड़|गुंडे|हथियार|दबंग|सरपंच|मुखिया|लोग|দাবাল|গুণ্ডা|আক্রমণকারী)/i.test(cleanText));
+      if (mentionsPerpetrators && !state.askedPerpetrators && state.lastTheme !== 'perpetrators_ack') {
+        state.lastTheme = 'perpetrators_ack';
+        state.askedPerpetrators = true;
+        return this.getPerpetratorsAckResponse(ctx, lang);
+      }
+
+      // 11. Family & Vulnerable Dependents
+      const hasFamily = INTENT_PATTERNS.FAMILY_VULNERABILITY.test(cleanText) || (ctx.vulnerableMembers && ctx.vulnerableMembers.length > 0);
+      if (hasFamily && !state.askedFamily && state.lastTheme !== 'family_ack') {
+        state.lastTheme = 'family_ack';
+        state.askedFamily = true;
+        return this.getFamilyAckResponse(ctx, lang);
+      }
+
+      // 12. Progressive Multi-Turn Flow (Always advances, never repeats!)
+      return this.getProgressiveNextStepResponse(ctx, state, sviResult, lang);
+    }
+
+    getSelfHarmResponse(lang) {
+      if (lang === 'hi') {
+        return {
+          text: "हम आपकी बात पूरी गंभीरता और संवेदनशीलता से सुन रहे हैं। आप अकेले नहीं हैं—आपकी ज़िंदगी और सुरक्षा सबसे पहले है। हमने तुरंत राष्ट्रीय संकट परामर्शदाता (Crisis Counselor) को आपके केस से जोड़ दिया है। आप अभी बिना किसी शुल्क के टेली-मानस (Tele-MANAS) हेल्पलाइन 14416 या राष्ट्रीय हेल्पलाइन 14566 पर भी सीधी बात कर सकते हैं। कृपया किसी शांत और सुरक्षित कमरे में रहें। क्या इस समय आपके पास कोई परिजन या भरोसेमंद व्यक्ति मौजूद है?",
+          urgent: true
+        };
+      }
+      if (lang === 'bn') {
+        return {
+          text: "আমরা গভীর সহানুভূতির সাথে আপনার পাশে আছি, আপনি একা নন। আপনার জীবন ও নিরাপত্তা আমাদের কাছে সর্বাধিক গুরুত্বপূর্ণ। আমরা অবিলম্বে একজন সংকট পরামর্শদাতাকে (Crisis Counselor) আপনার সাথে যুক্ত করছি। আপনি সরাসরি টোল-ফ্রি টেলি-মানস 14416 অথবা 14566 নম্বরেও যোগাযোগ করতে পারেন। দয়া করে একটি শান্ত ও সুরক্ষিত ঘরে থাকুন। আপনার সাথে কি কোনো আপনজন আছেন?",
+          urgent: true
+        };
+      }
+      if (lang === 'ta') {
+        return {
+          text: "நாங்கள் உங்களுக்கு உதவ எப்போதும் தயாராக இருக்கிறோம். உங்கள் உயிர் மற்றும் பாதுகாப்பு மிகவும் முக்கியமானது. தேசிய ஆலோசகரை உடனடியாக உங்களுடன் இணைக்கிறோம். நீங்கள் டெலி-மானாஸ் (Tele-MANAS) 14416 அல்லது 14566 என்ற எண்ணில் உடனடியாக தொடர்பு கொள்ளலாம். பாதுகாப்பான அறையில் இருங்கள். உங்கள் அருகில் யாராவது இருக்கிறார்களா?",
+          urgent: true
+        };
+      }
+      if (lang === 'te') {
+        return {
+          text: "మేము మీతో ఉన్నాము, మీ ప్రాణం మరియు భద్రత మాకు అత్యంత ప్రాధాన్యత. మేము వెంటనే ఒక కౌన్సిలర్‌ను మీ కోసం నియమిస్తున్నాము. మీరు ఉచిత టెలి-మానస్ 14416 లేదా 14566 నంబర్‌కు కూడా కాల్ చేయవచ్చు. దయచేసి సురక్షితమైన గదిలో ఉండండి. మీతో పాటు ఎవరైనా ఉన్నారా?",
+          urgent: true
+        };
+      }
+      if (lang === 'mr') {
+        return {
+          text: "आम्ही तुमचे ऐकत आहोत, कृपया धीर धरा—तुम्ही एकटे नाही आहात. तुमचे जीवन अत्यंत मौल्यवान आहे. आम्ही त्वरित संकट समुपदेशकांशी आपला संपर्क करत आहोत. आपण टेलि-मानस 14416 किंवा 14566 वर थेट विनामूल्य कॉल करू शकता. कृपया सुरक्षित खोलीत थांबा. आपल्या सोबत कोणी नातेवाईक आहेत का?",
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: "Hum aapki baat poori tarah samajh rahe hain. Please dhyan rakhein ki aap akele nahi hain—aapki zindagi aur safety sabse pehle hai. Humne turant crisis counselor ko aapke line par alert kiya hai. Aap Tele-MANAS (14416) ya 14566 par bhi direct call kar sakte hain. Please kisi safe kamre me rahiye. Kya abhi aapke paas koi family member hai?",
+          urgent: true
+        };
+      }
+      return {
+        text: "We hear you with deepest care, and please know that you are not alone. Your life and safety are paramount. I am immediately alerting a crisis counselor to your case. You can also directly reach Tele-MANAS toll-free at 14416 or the National Helpline at 14566. Please stay inside a quiet, secure room. Is someone with you right now?",
+        urgent: true
+      };
+    }
+
+    getBreachEmergencyResponse(ctx, lang) {
+      const locStr = ctx.location ? ` [${ctx.location}]` : '';
+      if (lang === 'hi') {
+        return {
+          text: `🚨 अति-आपातकालीन चेतावनी: हमलावर दरवाजा या खिड़की तोड़ने का प्रयास कर रहे हैं। तुरंत अंदर के किसी मजबूत कमरे में जाएं और भारी फर्नीचर (मेज, अलमारी) से दरवाजे को मजबूत बैरिकेड कर लें। बाहर किसी भी व्यक्ति से सीधे सामना न करें।\n\nहमने आपके क्षेत्र${locStr} के पुलिस नियंत्रण कक्ष और जिला नोडल अधिकारी को सर्वोच्च 'रेड-अलर्ट' गश्ती के लिए प्रेषित कर दिया है। क्या आपके साथ अंदर परिवार के अन्य सदस्य भी मौजूद हैं?`,
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `🚨 CRITICAL EMERGENCY: Door/gate par attack ho raha hai! Turant andar ke sabse secure room me chale jayein aur heavy furniture (table, almirah) se darwaze ko andar se barricade karein. Confrontation bilkul mat karein.\n\nAapke area${locStr} ke Police Control Room aur District Nodal Officer ko Red-Alert dispatch bhej diya gaya hai. Kya aapke saath andar family members bhi hain?`,
+          urgent: true
+        };
+      }
+      if (lang === 'bn') {
+        return {
+          text: `🚨 জরুরি সতর্কতা: আক্রমণকারীরা দরজা ভাঙার চেষ্টা করছে। অবিলম্বে ভেতরের সবচেয়ে নিরাপদ ঘরে যান এবং ভারী আসবাবপত্র দিয়ে দরজা আটকে দিন। কোনোভাবেই বাইরে বের হবেন না।\n\nআপনার এলাকার${locStr} পুলিশ নিয়ন্ত্রণ কক্ষ ও জেলা নোডাল অফিসারকে জরুরি পুলিশ দল পাঠাতে সতর্ক করা হয়েছে। আপনার সাথে কি পরিবারের অন্যরা আছেন?`,
+          urgent: true
+        };
+      }
+      return {
+        text: `🚨 CRITICAL EMERGENCY ALERT: Doors or gates are actively being breached. Move immediately into the innermost room and brace/barricade the door firmly with heavy furniture (tables, wardrobes). Do not attempt to confront the mob outside.\n\nWe have transmitted an urgent RED-ALERT dispatch to District Police and the Atrocity Protection Unit for your location${locStr}. Are there other family members inside the room with you?`,
+        urgent: true
+      };
+    }
+
+    getMedicalResponse(ctx, text, lang) {
+      const inj = ctx.injuries || "injury";
+      if (lang === 'hi') {
+        return {
+          text: `⚠️ चिकित्सीय आपातकाल दर्ज (${inj}): प्राथमिक उपचार—यदि खून बह रहा है तो तुरंत साफ कपड़े से घाव पर लगातार हल्का दबाव बनाएं और घायल को स्थिर लिटा कर रखें।\n\nहमने केस [${this.currentCase.id}] के तहत 108 आपातकालीन एम्बुलेंस सेवा और जिला मुख्य चिकित्सा अधिकारी को अलर्ट किया है। क्या किसी स्थानीय अस्पताल या क्लिनिक ने इलाज या भर्ती करने से मना किया है?`,
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `⚠️ Medical Emergency Logged (${inj}): First aid—agar bleeding ho rahi hai toh saaf kapde se continuous gentle pressure banayein aur injured person ko bilkul still rakhein.\n\nHumne Case [${this.currentCase.id}] ke tehat 108 Ambulance service aur CMO ko alert kiya hai. Kya kisi local clinic ya hospital ne admit karne se mana kiya hai?`,
+          urgent: true
+        };
+      }
+      if (lang === 'bn') {
+        return {
+          text: `⚠️ জরুরি চিকিৎসা তথ্য লিপিবদ্ধ (${inj}): প্রাথমিক চিকিৎসা—রক্তক্ষরণ বন্ধ করতে পরিষ্কার কাপড় দিয়ে চেপে ধরুন এবং আহত ব্যক্তিকে শান্ত রাখুন।\n\nআমরা 108 অ্যাম্বুলেন্স পরিষেবাকে সতর্ক করেছি। কোনো স্থানীয় হাসপাতাল কি আহতকে ভর্তি নিতে বা চিকিৎসা দিতে অস্বীকার করেছে?`,
+          urgent: true
+        };
+      }
+      return {
+        text: `⚠️ MEDICAL TRAUMA RECORDED (${inj}): Immediate first aid—apply firm, clean cloth pressure to control any active bleeding and keep the injured person completely still.\n\nWe have signaled an urgent dispatch request to 108 Ambulance Services under Case ID [${this.currentCase.id}]. Has any local clinic or hospital refused admission or emergency treatment?`,
+        urgent: true
+      };
+    }
+
+    getPoliceInquiryResponse(ctx, text, lang) {
+      if (lang === 'hi') {
+        return {
+          text: `अनुसूचित जाति एवं जनजाति (अत्याचार निवारण) अधिनियम की धारा 4 के तहत किसी भी पुलिस अधिकारी द्वारा शिकायत/FIR दर्ज न करना या सहायता में विलंब करना गैर-जमानती दंडात्मक अपराध है।\n\nहमने इस पुलिस निष्क्रियता को आपके केस [${this.currentCase.id}] के आधिकारिक रिकॉर्ड में दर्ज कर लिया है। कृपया अपने नजदीकी थाने (Police Station) का नाम बताएं ताकि पुलिस अधीक्षक (SP) को सीधी वैधानिक चेतावनी भेजी जा सके।`,
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `SC/ST PoA Act ke Section 4 ke tehat police dwara FIR na likhna ya delay karna punishable non-bailable offense hai. Humne police inaction ko aapke Case [${this.currentCase.id}] me flag kar diya hai. Apne nearest Thana (Police Station) ka naam batayein taaki SP Office ko direct statutory notice dispatch ho sake.`,
+          urgent: true
+        };
+      }
+      return {
+        text: `Under Section 4 of the SC/ST (Prevention of Atrocities) Act, wilful refusal or neglect by police officers to register an FIR or provide immediate protection is a non-bailable criminal offense. We have formally recorded this police inaction in your statutory dossier [${this.currentCase.id}]. Please state the name of your local Police Station (Thana) so an expedited alert can be dispatched to the Superintendent of Police (SP).`,
+        urgent: true
+      };
+    }
+
+    getLocationAckResponse(ctx, lang) {
+      const loc = ctx.location || 'your area';
+      if (lang === 'hi') {
+        return {
+          text: `स्थान दर्ज कर लिया गया है: "${loc}"। इस स्थान को केस [${this.currentCase.id}] में सुरक्षित कर त्वरित सुरक्षा दल व जिला नोडल अधिकारी के समन्वय में दर्ज किया गया है।\n\nक्या आप अभी किसी कमरे में सुरक्षित बंद हैं, और क्या आपके साथ घर में छोटे बच्चे या बुजुर्ग परिजन भी हैं?`,
+          urgent: false
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `Location verify ho gayi hai: "${loc}"। Yeh details Case [${this.currentCase.id}] ke tehat District Nodal Officer aur Rapid Response Team ko dispatch kar di gayi hain.\n\nKya aap abhi andar kisi safe room me locked hain, aur kya aapke saath chote bacche ya elderly family members hain?`,
+          urgent: false
+        };
+      }
+      return {
+        text: `Location coordinates confirmed: "${loc}". This has been committed to your official emergency record under Case ID [${this.currentCase.id}] for the District Nodal Officer and protection patrols. Are you currently secured inside a safe room, and are there young children or elderly family members with you?`,
+        urgent: false
+      };
+    }
+
+    getSafeAffirmationResponse(ctx, lang) {
+      const locPart = ctx.location ? ` (${ctx.location})` : '';
+      if (lang === 'hi') {
+        return {
+          text: `यह जानकर राहत मिली कि आप अंदर सुरक्षित कमरे में बंद हैं${locPart}। कृपया कुंडी व सिटकनी मजबूती से बंद रखें और खिड़कियों के सामने बिल्कुल न जाएं।\n\nक्या आप बाहर मौजूद हमलावरों या मुख्य व्यक्तियों के नाम, उनकी जाति या उनके हथियार (लाठी, रॉड, बंदूक) के बारे में बता सकते हैं?`,
+          urgent: false
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `Relieved to know aap andar safe room me locked hain${locPart}। Please darwaza securely bolted rakhein aur windows se door rahein.\n\nKya aap bahar khade assailants ke naam, unka group, ya hathiyar (rods, lathi, guns) identify kar sakte hain?`,
+          urgent: false
+        };
+      }
+      return {
+        text: `Relieved to confirm that you are secured inside your safe room${locPart}. Keep all interior doors deadbolted and remain strictly away from windows. Do you recognize the names or identities of the primary persons outside, and what weapons are they displaying?`,
+        urgent: false
+      };
+    }
+
+    getPerpetratorsAckResponse(ctx, lang) {
+      const perp = ctx.perpetrators || "assailants";
+      const weapons = ctx.weapons.length > 0 ? ` (हथियार: ${ctx.weapons.join(', ')})` : '';
+      const weaponsEng = ctx.weapons.length > 0 ? ` (weapons: ${ctx.weapons.join(', ')})` : '';
+
+      if (lang === 'hi') {
+        return {
+          text: `हमलावरों की जानकारी दर्ज: "${perp}"${weapons}। यह SC/ST (PoA) Act की धारा 3(1)(r)(s) और 3(2)(va) के तहत गंभीर संज्ञेय अपराध है।\n\nतत्काल पुलिस व नोडल अधिकारी सहायता के लिए, कृपया अपने गांव/मोहल्ले और जिले का नाम पुष्टि करें यदि अभी तक नहीं बताया है।`,
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `Assailants and weapon intelligence logged: "${perp}"${weaponsEng}। Yeh SC/ST PoA Act ke Sections 3(1)(r)(s) aur 3(2)(va) ke tehat cognizable offense hai. Agar abhi tak confirm nahi kiya, toh please apna village/colony aur district ka naam confirm karein.`,
+          urgent: true
+        };
+      }
+      return {
+        text: `Perpetrator intelligence logged: "${perp}"${weaponsEng}. This constitutes an aggravated cognizable atrocity under Sections 3(1)(r)(s) and 3(2)(va) of the SC/ST (PoA) Act. If not yet confirmed, could you specify your village/locality and district name so protective police patrols can be dispatched?`,
+        urgent: true
+      };
+    }
+
+    getFamilyAckResponse(ctx, lang) {
+      const members = ctx.vulnerableMembers.length > 0 ? ctx.vulnerableMembers.join(', ') : "family members";
+      if (lang === 'hi') {
+        return {
+          text: `परिवार के सदस्यों (${members}) की मौजूदगी के कारण आपके मामले की संवेदनशीलता और सुरक्षा प्राथमिकता को तुरंत बढ़ा दिया गया है। कृपया सभी को एक साथ सबसे भीतरी कमरे में रखें।\n\nक्या किसी को कोई शारीरिक चोट लगी है या किसी को तत्काल प्राथमिक उपचार की आवश्यकता है?`,
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `Family dependents (${members}) ki presence ke karan aapke case ki triage priority increase kar di gayi hai. Sabhi ko ek saath inner room me rakhein. Kya kisi ko physical injury ya bleeding hui hai jisko medical treatment chahiye?`,
+          urgent: true
+        };
+      }
+      return {
+        text: `Vulnerability status escalated due to the presence of vulnerable family members (${members}). Keep everyone huddled together in the innermost secure room. Has anyone sustained physical injuries or battery requiring emergency first aid?`,
+        urgent: true
+      };
+    }
+
+    getActionGuidanceResponse(ctx, sviResult, lang) {
+      const loc = ctx.location || "your registered location";
+      if (lang === 'hi') {
+        return {
+          text: `इस समय आपको निम्नलिखित कदम उठाने चाहिए:\n1. तुरंत सुरक्षित भीतरी कमरे में बंद रहें, हमलावरों से कोई सीधा संवाद न करें।\n2. यदि खिड़की से सुरक्षित संभव हो, तो अंदर से हमलावरों की ऑडियो/वीडियो रिकॉर्डिंग साक्ष्य के रूप में तैयार रखें।\n3. NHAA 14566 ने केस [${this.currentCase.id}] के तहत स्थान "${loc}" पर आपातकालीन सुरक्षा आदेश प्रेषित किया है।\n4. क्या आपने स्थानीय 112 पर कॉल किया था, और क्या पुलिस ने कोई प्रतिक्रिया दी?`,
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: `Abhi aapko yeh emergency steps follow karne chahiye:\n1. Safe inner room me locked rahein, bahar mob se direct confrontation na karein.\n2. Agar safe ho toh window se audio/video evidence record kar lein.\n3. NHAA ne Case [${this.currentCase.id}] ke tehat location "${loc}" par Nodal Officer alert bhej diya hai.\n4. Kya aapne 112 police ko call kiya hai aur unka kya response raha?`,
+          urgent: true
+        };
+      }
+      return {
+        text: `Here are the immediate recommended safety steps:\n1. Remain barricaded inside your secure room; avoid any physical confrontation with the crowd.\n2. If completely safe to do so, record audio or note assailant names and vehicles as evidence.\n3. Case [${this.currentCase.id}] is escalated under the PoA Act for emergency patrol to "${loc}".\n4. Have you dialed 112, or has the local police station responded to your calls?`,
+        urgent: true
+      };
+    }
+
+    getImmediateDangerFirstResponse(ctx, lang) {
+      if (lang === 'hi') {
+        return {
+          text: "⚠️ आपकी सुरक्षा हमारी सर्वोच्च प्राथमिकता है। यदि बाहर भीड़ या हथियारबंद लोग हैं, तो तुरंत अंदर से दरवाजा बंद रखें और बाहर न निकलें। हमने PoA Act के तहत आपकी शिकायत को वरिष्ठ नोडल अधिकारी और जिला पुलिस को तत्काल प्रेषित कर दिया है। क्या आप अभी किसी सुरक्षित कमरे में बंद हैं?",
+          urgent: true
+        };
+      }
+      if (lang === 'bn') {
+        return {
+          text: "⚠️ আপনার নিরাপত্তা আমাদের প্রথম অগ্রাধিকার। আক্রমণকারীরা বাইরে থাকলে দরজা বন্ধ করে ভেতরে থাকুন, বাইরে বের হবেন না। আমরা এসসি/এসটি আইনের অধীনে আপনার কেসটি ঊর্ধ্বতন আধিকারিক এবং জেলা পুলিশকে জানিয়েছি। আপনারা কি ভেতরে সুরক্ষিত ঘরে আছেন?",
+          urgent: true
+        };
+      }
+      if (lang === 'hinglish') {
+        return {
+          text: "⚠️ AAPKI SAFETY SABSE PEHLE HAI. Agar assailants ya bheed bahar hai, toh darwaza andar se lock rakhein aur bahar mat niklein. SC/ST PoA Act ke tehat District Police aur Senior Officers ko alert bhej diya gaya hai. Kya aap abhi kisi safe room me locked hain?",
+          urgent: true
+        };
+      }
+      return {
+        text: "⚠️ YOUR SAFETY IS OUR HIGHEST PRIORITY. If assailants are outside or threatening you right now, stay locked inside and do not open the door. We have immediately escalated your case to Senior Helpline Officers and District Police Authorities under the SC/ST PoA Act. Are you currently locked inside a safe room?",
+        urgent: true
+      };
+    }
+
+    /**
+     * Coherent, Step-by-Step Progressive Triage (Guarantees NO Duplicate Questions)
+     */
+    getProgressiveNextStepResponse(ctx, state, sviResult, lang) {
+      const caseId = this.currentCase.id;
+
+      // 1. Need Location?
+      if (!state.askedLocation && !ctx.location) {
+        state.askedLocation = true;
+        if (lang === 'hi') {
+          return {
+            text: `हमने आपका बयान केस ID [${caseId}] के तहत सुरक्षित दर्ज कर लिया है। त्वरित पुलिस गश्त और सुरक्षा दल भेजने के लिए कृपया अपने गांव/मोहल्ले और जिले का नाम बताएं।`,
+            urgent: false
+          };
+        }
+        if (lang === 'hinglish') {
+          return {
+            text: `Aapka statement Case ID [${caseId}] ke tehat record ho chuka hai. Urgent police patrol aur protection team ke liye please apna village/colony aur district ka naam confirm karein.`,
+            urgent: false
+          };
+        }
+        return {
+          text: `We have recorded your statement under Case ID [${caseId}]. To dispatch emergency protective units under the PoA Act, could you confirm your village/locality and district name?`,
+          urgent: false
+        };
+      }
+
+      // 2. Need Perpetrators / Hostility Context?
+      if (!state.askedPerpetrators && !ctx.perpetrators) {
+        state.askedPerpetrators = true;
+        if (lang === 'hi') {
+          return {
+            text: `आपकी सुरक्षा के लिए कानूनी कार्रवाई तैयार की जा रही है। क्या आप जानते हैं कि यह हमला या धमकी किन लोगों द्वारा दी जा रही है और इसका कारण क्या है (जैसे जमीन विवाद, जातिगत बहिष्कार, या पुरानी रंजिश)?`,
+            urgent: false
+          };
+        }
+        if (lang === 'hinglish') {
+          return {
+            text: `Legal protection proceedings initiate ki ja rahi hain. Kya aap bata sakte hain ki attackers kaun hain aur yeh vivad kis wajah se hua (jaise zameen vivad, caste boycott, ya complaint karne par)?`,
+            urgent: false
+          };
+        }
+        return {
+          text: `Legal protection proceedings are being prepared. Could you specify who the assailants are and what triggered this hostility (e.g., land dispute, social boycott, refusal of forced labor, or prior complaint)?`,
+          urgent: false
+        };
+      }
+
+      // 3. Need Family / Dependents Check?
+      if (!state.askedFamily && (!ctx.vulnerableMembers || ctx.vulnerableMembers.length === 0)) {
+        state.askedFamily = true;
+        if (lang === 'hi') {
+          return {
+            text: `सुरक्षा मूल्यांकन के लिए: क्या आपके साथ घर में छोटे बच्चे, महिलाएं या बुजुर्ग माता-पिता भी मौजूद हैं?`,
+            urgent: false
+          };
+        }
+        if (lang === 'hinglish') {
+          return {
+            text: `Safety assessment ke liye: kya aapke saath ghar me chote bacche, women, ya elderly family members hain?`,
+            urgent: false
+          };
+        }
+        return {
+          text: `For vulnerability assessment: are there young children, women, or elderly family members with you inside the premises?`,
+          urgent: false
+        };
+      }
+
+      // 4. Need Injury / Medical Check?
+      if (!state.askedInjuries && !ctx.injuries) {
+        state.askedInjuries = true;
+        if (lang === 'hi') {
+          return {
+            text: `क्या इस घटना में आप या आपके परिवार के किसी सदस्य को कोई शारीरिक चोट लगी है या प्राथमिक उपचार की आवश्यकता है?`,
+            urgent: false
+          };
+        }
+        if (lang === 'hinglish') {
+          return {
+            text: `Kya is ghatna me aapko ya kisi family member ko physical injury ya bleeding hui hai jisko immediate medical help chahiye?`,
+            urgent: false
+          };
+        }
+        return {
+          text: `Has anyone sustained any physical injury or assault in this incident, or does anyone require immediate medical care?`,
+          urgent: false
+        };
+      }
+
+      // 5. Need Police Status Check?
+      if (!state.askedPolice && !ctx.policeStatus) {
+        state.askedPolice = true;
+        if (lang === 'hi') {
+          return {
+            text: `क्या आपने 112 डायल किया था, या नजदीकी पुलिस थाने में संपर्क किया है? उनकी क्या प्रतिक्रिया रही?`,
+            urgent: false
+          };
+        }
+        if (lang === 'hinglish') {
+          return {
+            text: `Kya aapne 112 par police ko call kiya hai, ya nearest thana me contact kiya? Unka kya response raha?`,
+            urgent: false
+          };
+        }
+        return {
+          text: `Have you called 112 or contacted your local police station, and what was their response?`,
+          urgent: false
+        };
+      }
+
+      // 6. Dynamic Live Monitoring (Cites accumulated context, never static!)
+      const locSummary = ctx.location ? ` [स्थान: ${ctx.location}]` : '';
+      const locSummaryEng = ctx.location ? ` for your location in ${ctx.location}` : '';
+      const perpSummary = ctx.perpetrators ? ` (हमलावर: ${ctx.perpetrators})` : '';
+
+      if (lang === 'hi') {
+        const checkinVariations = [
+          `आपकी पूरी स्थिति केस [${caseId}] में लगातार मॉनिटर की जा रही है${locSummary}${perpSummary} (SVI स्कोर: ${sviResult.score}/100 - ${sviResult.band} ${sviResult.criticalOverride ? '[अति-गंभीर ओवरराइड]' : ''})। क्या बाहर स्थिति में कोई नया बदलाव हुआ है?`,
+          `हम लगातार आपकी सुरक्षा लाइन पर नजर रखे हुए हैं${locSummary}। कृपया भीतरी कमरे में शांत रहें और बत्तियां धीमी रखें। क्या कमरे के अंदर सभी परिजन सुरक्षित हैं?`,
+          `आपकी हर जानकारी राज्य नोडल अधिकारी को लाइव अपडेट हो रही है। यदि हमलावर खिड़कियों या दरवाजे के पास आएं, तो तुरंत बताएं। क्या बाहर शोर कम हुआ है?`
+        ];
+        return {
+          text: checkinVariations[state.turnCount % checkinVariations.length],
+          urgent: sviResult.band === 'CRITICAL'
+        };
+      }
+      if (lang === 'hinglish') {
+        const checkinVariations = [
+          `Aapka case [${caseId}] continuously active hai${locSummary}${perpSummary} (SVI Index: ${sviResult.score}/100 - ${sviResult.band} ${sviResult.criticalOverride ? '[Critical Override Active]' : ''})। Kya bahar koi naya movement notice hua hai?`,
+          `Helpline Crisis Cell aapki line live monitor kar raha hai${locSummary}। Please safe room me calm rahein. Kya sabhi family members safely holding up kar rahe hain?`,
+          `Aapki situation District Nodal Officer ko live synched hai. Agar bahar koi door todne ki koshish kare, toh turant inform karein.`
+        ];
+        return {
+          text: checkinVariations[state.turnCount % checkinVariations.length],
+          urgent: sviResult.band === 'CRITICAL'
+        };
+      }
+      const checkinVariationsEng = [
+        `Active crisis monitoring maintained under Case [${caseId}]${locSummaryEng} (SVI: ${sviResult.score}/100 - ${sviResult.band} ${sviResult.criticalOverride ? '[Critical Override Active]' : ''}). Have you noticed any recent movement or development outside?`,
+        `Our Crisis Intake Cell has an open monitored line with you${locSummaryEng}. Please keep the inner doors locked and lights dim. Is everyone inside the room holding up safely?`,
+        `All verified intelligence is committed to your dossier for State Nodal oversight. If assailants attempt to breach windows or approach closer, notify us immediately.`
+      ];
+      return {
+        text: checkinVariationsEng[state.turnCount % checkinVariationsEng.length],
+        urgent: sviResult.band === 'CRITICAL'
+      };
+    }
+
+    processMessage(userText) {
+      if (!this.currentCase) {
+        this.initSession();
+      }
+
+      const cleanText = (userText || '').trim();
+      if (!cleanText) return null;
+
+      const nowFormatted = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
+      const timeOnly = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      // Determine Language
+      let lang = this.selectedLanguage;
+      if (lang === 'auto' || !lang) {
+        lang = detectLanguage(cleanText);
+      }
+
+      // Record User Message
+      this.currentCase.messages.push({
+        sender: 'USER',
+        text: cleanText,
+        timestamp: timeOnly,
+        fullTimestamp: nowFormatted
+      });
+
+      // 1. Analyze and Extract Indicators
+      const newIndicators = this.analyzeText(cleanText);
+
+      // 2. Accumulate indicators
+      for (const ind of newIndicators) {
+        const exists = this.currentCase.detectedIndicators.some(existing => existing.key === ind.key);
+        if (!exists) {
+          this.currentCase.detectedIndicators.push(ind);
+        }
+      }
+
+      // 3. Compute Deterministic SVI Score & Section 8.3 Overrides
+      const sviResult = this.calculateSVI(this.currentCase.detectedIndicators);
+
+      this.currentCase.sviScore = sviResult.score;
+      this.currentCase.riskBand = sviResult.band;
+      this.currentCase.criticalOverride = sviResult.criticalOverride;
+      this.currentCase.overrideReasons = sviResult.overrideReasons;
+      this.currentCase.sviMetadata = {
+        formula: sviResult.formula,
+        criteria_version: sviResult.criteria_version,
+        raw_sum: sviResult.raw_sum
+      };
+      this.currentCase.updatedAt = new Date().toISOString();
+
+      if (sviResult.criticalOverride || sviResult.band === 'CRITICAL') {
+        this.currentCase.status = 'CRITICAL_ESCALATION';
+      } else if (sviResult.band === 'HIGH') {
+        this.currentCase.status = 'HIGH_PRIORITY_REVIEW';
+      } else if (sviResult.band === 'MODERATE') {
+        this.currentCase.status = 'MODERATE_COUNSELING';
+      }
+
+      // 4. Generate Dynamic, Non-Repeating Response
+      const responseData = this.generateDynamicResponse(cleanText, newIndicators, sviResult, lang);
+
+      // Record Bot Message
+      this.currentCase.messages.push({
+        sender: 'BOT',
+        text: responseData.text,
+        timestamp: timeOnly,
+        fullTimestamp: nowFormatted,
+        sviSnapshot: sviResult.score,
+        riskBandSnapshot: sviResult.band,
+        urgent: responseData.urgent
+      });
+
+      // 5. Audit Log (Compliant with Section 8.4)
+      const auditDetails = `Turn #${this.conversationState.turnCount}. Language: ${lang}. Criteria Version: ${sviResult.criteria_version}. Formula: ${sviResult.formula}. SVI: ${sviResult.score}/100 (Raw Sum: ${sviResult.raw_sum}). Final Classification: ${sviResult.band}. Section 8.3 Override: ${sviResult.criticalOverride ? 'TRUE (' + sviResult.overrideReasons.join('; ') + ')' : 'FALSE'}. Triggered: ${this.currentCase.detectedIndicators.map(i => `${i.name} [wt:${i.weight}]`).join(', ') || 'None'}`;
+      this.currentCase.auditLogs.push({
+        action: 'SVI_ASSESSMENT_STEP',
+        details: auditDetails,
+        timestamp: nowFormatted
+      });
+
+      // 6. Persist to Local Storage
+      this.currentCase.conversationState = { ...this.conversationState };
+      saveCaseRecord(this.currentCase);
+
+      const langNames = {
+        en: 'English',
+        hi: 'हिन्दी',
+        bn: 'বাংলা',
+        ta: 'தமிழ்',
+        te: 'తెలుగు',
+        mr: 'मराठी',
+        hinglish: 'Hinglish'
+      };
+
+      return {
+        caseId: this.currentCase.id,
+        botReply: responseData.text,
+        detectedIndicators: newIndicators,
+        allIndicators: this.currentCase.detectedIndicators,
+        sviScore: sviResult.score,
+        riskBand: sviResult.band,
+        criticalOverride: sviResult.criticalOverride,
+        overrideReasons: sviResult.overrideReasons,
+        formula: sviResult.formula,
+        criteriaVersion: sviResult.criteria_version,
+        rawSum: sviResult.raw_sum,
+        recommendedAction: sviResult.recommendedAction,
+        languageUsed: lang,
+        languageName: langNames[lang] || lang,
+        turnCount: this.conversationState.turnCount,
+        context: this.currentCase.context,
+        urgent: responseData.urgent
+      };
+    }
+
+    exportDossier() {
+      if (!this.currentCase) return null;
+      return JSON.stringify(this.currentCase, null, 2);
+    }
+  }
+
+  root.CRITERIA_DEFINITIONS = CRITERIA_DEFINITIONS;
+  root.MULTILINGUAL_PATTERNS = MULTILINGUAL_PATTERNS;
+  root.OfflineAIEngine = OfflineAIEngine;
+  root.offlineEngineInstance = new OfflineAIEngine();
+  root.getStoredNHAACases = getStoredCases;
+
+})(typeof window !== 'undefined' ? window : this);
+
+/**
+ * NHAA 14566 - AI-Assisted Real-Time Stress & Trauma Assessment Module
+ * Authentication & Session Management Module
+ */
+
+const AUTH_STORAGE_KEY = 'nhaa_current_user_session';
+
+// Mock credentials for demo and evaluation
+const DEMO_CITIZEN = {
+  name: 'Kavita Verma',
+  role: 'Citizen / Complainant',
+  id: 'CIT-2026-9481',
+  phone: '9876543210',
+  otp: '14566',
+  isOfficer: false
+};
+
+const DEMO_OFFICER = {
+  name: 'Officer Rajesh Kumar',
+  role: 'Senior Triage Officer',
+  id: 'OFFICER-14566',
+  email: 'r.kumar@nhaa.gov.in',
+  password: 'Password@123',
+  badge: 'DEPT-SJE-940',
+  isOfficer: true
+};
+
+/**
+ * Get the currently logged-in user from localStorage
+ */
+function getCurrentUser() {
+  try {
+    const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    console.error('Error reading user session:', e);
+    return null;
+  }
+}
+
+/**
+ * Save user session to localStorage
+ */
+function setCurrentUser(user) {
+  try {
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+  } catch (e) {
+    console.error('Error writing user session:', e);
+  }
+}
+
+/**
+ * Clear session and log out
+ */
+function logout() {
+  localStorage.removeItem(AUTH_STORAGE_KEY);
+  showToast('Logged out successfully', 'info');
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 400);
+}
+
+/**
+ * Pre-fill demo credentials for citizen tab
+ */
+function fillDemoCitizen() {
+  const phoneInput = document.getElementById('citizen-phone');
+  const otpInput = document.getElementById('citizen-otp');
+  if (phoneInput && otpInput) {
+    phoneInput.value = DEMO_CITIZEN.phone;
+    otpInput.value = DEMO_CITIZEN.otp;
+    showToast('Demo Citizen credentials loaded!', 'info');
+  }
+}
+
+/**
+ * Pre-fill demo credentials for officer tab
+ */
+function fillDemoOfficer() {
+  const officerIdInput = document.getElementById('officer-id');
+  const officerPassInput = document.getElementById('officer-password');
+  const officerRoleSelect = document.getElementById('officer-role');
+  if (officerIdInput && officerPassInput) {
+    officerIdInput.value = DEMO_OFFICER.id;
+    officerPassInput.value = DEMO_OFFICER.password;
+    if (officerRoleSelect) {
+      officerRoleSelect.value = 'triage_officer';
+    }
+    showToast('Demo Officer credentials loaded!', 'info');
+  }
+}
+
+/**
+ * Initialize navbar UI based on logged-in state
+ */
+function renderNavbarAuth() {
+  const navAuthContainer = document.getElementById('nav-auth-container');
+  if (!navAuthContainer) return;
+
+  const user = getCurrentUser();
+  if (user) {
+    const initials = user.name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .substring(0, 2)
+      .toUpperCase();
+
+    const citizenChatBtn = !user.isOfficer 
+      ? `<a href="chat.html" class="btn btn-sm btn-saffron" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.75rem; font-size:0.78rem;">
+          <span class="pulse-dot" style="width:6px; height:6px; background:#fff; margin-right:2px;"></span>
+          Citizen Crisis Chat
+        </a>`
+      : '';
+
+    navAuthContainer.innerHTML = `
+      <div class="user-profile-badge" title="${user.role}">
+        <div class="user-avatar">${initials}</div>
+        <span>${user.name}</span>
+        <span style="font-size:0.7rem; background:${user.isOfficer ? '#134074' : '#f58220'}; color:#fff; padding:1px 6px; border-radius:10px;">
+          ${user.isOfficer ? 'Officer' : 'Citizen'}
+        </span>
+      </div>
+      ${citizenChatBtn}
+      <button class="btn btn-sm btn-outline" onclick="logout()" title="Log out">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Logout
+      </button>
+    `;
+  } else {
+    navAuthContainer.innerHTML = `
+      <a href="login.html" class="btn btn-sm btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+          <polyline points="10 17 15 12 10 7"></polyline>
+          <line x1="15" y1="12" x2="3" y2="12"></line>
+        </svg>
+        Portal Login
+      </a>
+    `;
+  }
+}
+
+/**
+ * Handle citizen authentication submission
+ */
+function handleCitizenLogin(e) {
+  e.preventDefault();
+  const phone = document.getElementById('citizen-phone').value.trim();
+  const otp = document.getElementById('citizen-otp').value.trim();
+
+  if (!phone || phone.length < 10) {
+    showToast('Please enter a valid 10-digit mobile number', 'error');
+    return;
+  }
+  if (!otp || otp.length < 4) {
+    showToast('Please enter valid verification OTP', 'error');
+    return;
+  }
+
+  const user = {
+    ...DEMO_CITIZEN,
+    phone: phone
+  };
+
+  setCurrentUser(user);
+  showToast('Verified successfully! Launching AI Crisis Chat...', 'success');
+  setTimeout(() => {
+    window.location.href = 'chat.html';
+  }, 650);
+}
+
+/**
+ * Handle officer authentication submission
+ */
+function handleOfficerLogin(e) {
+  e.preventDefault();
+  const officerId = document.getElementById('officer-id').value.trim();
+  const password = document.getElementById('officer-password').value;
+  const roleSelect = document.getElementById('officer-role');
+  const roleName = roleSelect ? roleSelect.options[roleSelect.selectedIndex].text : 'Helpline Officer';
+
+  if (!officerId) {
+    showToast('Please enter your Officer / Staff ID', 'error');
+    return;
+  }
+  if (!password || password.length < 4) {
+    showToast('Please enter your authorized password', 'error');
+    return;
+  }
+
+  const user = {
+    ...DEMO_OFFICER,
+    id: officerId,
+    role: roleName
+  };
+
+  setCurrentUser(user);
+  showToast('Authorized Login! Welcome ' + user.name, 'success');
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 750);
+}
+
+// Attach listener once DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  renderNavbarAuth();
+
+  const citizenForm = document.getElementById('form-citizen-login');
+  if (citizenForm) {
+    citizenForm.addEventListener('submit', handleCitizenLogin);
+  }
+
+  const officerForm = document.getElementById('form-officer-login');
+  if (officerForm) {
+    officerForm.addEventListener('submit', handleOfficerLogin);
+  }
+});
+
+/**
+ * NHAA 14566 - AI-Assisted Real-Time Stress & Trauma Assessment Module
+ * UI Interactions, SVI Calculator, Case Tracker & Safety Helpers
+ */
+
+/**
+ * Global Toast Notification Generator
+ */
+function showToast(message, type = 'info') {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+
+  const iconSvg = type === 'success' 
+    ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+    : type === 'error'
+    ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`
+    : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+
+  toast.innerHTML = `${iconSvg} <span>${message}</span>`;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    toast.style.transition = 'all 250ms ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+/**
+ * Emergency Quick Exit for Victim Protection
+ * Immediately leaves page to Google without retaining state
+ */
+function triggerQuickExit() {
+  window.location.replace('https://www.google.com');
+}
+
+/**
+ * Switch Authentication Tabs on login.html
+ */
+function switchAuthTab(tab) {
+  const citizenBtn = document.getElementById('tab-btn-citizen');
+  const officerBtn = document.getElementById('tab-btn-officer');
+  const citizenPane = document.getElementById('tab-pane-citizen');
+  const officerPane = document.getElementById('tab-pane-officer');
+
+  if (!citizenBtn || !officerBtn || !citizenPane || !officerPane) return;
+
+  if (tab === 'citizen') {
+    citizenBtn.classList.add('active');
+    officerBtn.classList.remove('active');
+    citizenPane.style.display = 'block';
+    officerPane.style.display = 'none';
+  } else {
+    officerBtn.classList.add('active');
+    citizenBtn.classList.remove('active');
+    officerPane.style.display = 'block';
+    citizenPane.style.display = 'none';
+  }
+}
+
+/**
+ * Toggle Password Visibility
+ */
+function togglePasswordVisibility(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+  } else {
+    input.type = 'password';
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+  }
+}
+
+/**
+ * SVI (Stress Vulnerability Index) Live Calculation Engine
+ * Implements Section 8 & 8.3 of NHAA Specification
+ */
+function updateSviCalculation() {
+  const checkboxes = document.querySelectorAll('.criterion-checkbox');
+  if (!checkboxes.length) return;
+
+  let rawScore = 0;
+  let hasCriticalOverride = false;
+  let triggeredCount = 0;
+  const triggeredCriteria = [];
+
+  checkboxes.forEach(cb => {
+    const parentLabel = cb.closest('.criterion-label');
+    if (cb.checked) {
+      if (parentLabel) parentLabel.classList.add('checked');
+      const weight = parseInt(cb.dataset.weight || '0', 10);
+      const isOverride = cb.dataset.override === 'true';
+
+      rawScore += weight;
+      triggeredCount++;
+      triggeredCriteria.push(cb.dataset.name);
+
+      if (isOverride) {
+        hasCriticalOverride = true;
+      }
+    } else {
+      if (parentLabel) parentLabel.classList.remove('checked');
+    }
+  });
+
+  const finalScore = Math.min(100, rawScore);
+
+  // Band classification
+  let band = 'LOW';
+  let bandClass = 'low';
+  let fillBg = '#10b981';
+  let recommendation = 'Standard queue; provide automated helpline guidelines';
+
+  if (hasCriticalOverride) {
+    band = 'CRITICAL';
+    bandClass = 'critical';
+    fillBg = '#dc2626';
+    recommendation = 'CRITICAL OVERRIDE: Immediate high-risk human escalation required';
+  } else if (finalScore >= 75) {
+    band = 'CRITICAL';
+    bandClass = 'critical';
+    fillBg = '#dc2626';
+    recommendation = 'Immediate high-risk human escalation pathway';
+  } else if (finalScore >= 50) {
+    band = 'HIGH';
+    bandClass = 'high';
+    fillBg = '#d97706';
+    recommendation = 'Significant vulnerability; priority officer review within 1 hour';
+  } else if (finalScore >= 25) {
+    band = 'MODERATE';
+    bandClass = 'moderate';
+    fillBg = '#2563eb';
+    recommendation = 'Meaningful vulnerability; scheduled counseling & support follow-up';
+  }
+
+  // Update DOM elements if present
+  const scoreDisplay = document.getElementById('svi-display-score');
+  const bandBadge = document.getElementById('svi-display-band');
+  const progressBar = document.getElementById('svi-progress-fill');
+  const criteriaCountSpan = document.getElementById('svi-criteria-count');
+  const overrideAlert = document.getElementById('svi-override-notice');
+  const recommendationSpan = document.getElementById('svi-recommendation-text');
+
+  if (scoreDisplay) scoreDisplay.textContent = finalScore;
+  if (criteriaCountSpan) criteriaCountSpan.textContent = triggeredCount;
+  if (recommendationSpan) recommendationSpan.textContent = recommendation;
+
+  if (progressBar) {
+    progressBar.style.width = `${Math.max(8, finalScore)}%`;
+    progressBar.style.backgroundColor = fillBg;
+  }
+
+  if (bandBadge) {
+    bandBadge.textContent = band;
+    bandBadge.className = `risk-chip ${bandClass}`;
+  }
+
+  if (overrideAlert) {
+    overrideAlert.style.display = hasCriticalOverride ? 'block' : 'none';
+  }
+}
+
+/**
+ * Case Tracker Modal System
+ */
+const MOCK_CASES = {
+  'NHAA-2026-00124': {
+    id: 'NHAA-2026-00124',
+    date: '2026-09-08 10:14 IST',
+    status: 'High Priority Human Review',
+    statusClass: 'critical',
+    svi: 82,
+    band: 'CRITICAL',
+    channel: '24/7 Web Chat Assistance',
+    department: 'Dept of Social Justice & Empowerment',
+    statute: 'SC/ST (Prevention of Atrocities) Act 1989',
+    officer: 'Officer Rajesh Kumar (NHAA-OFF-702)',
+    indicators: ['Immediate physical danger', 'Death threat', 'High fear level'],
+    summary: 'Complainant reported imminent threat from hostile group outside residence following land access dispute. Critical override triggered, local district nodal officer notified.'
+  },
+  'NHAA-2026-00089': {
+    id: 'NHAA-2026-00089',
+    date: '2026-09-07 16:30 IST',
+    status: 'In Counseling Triage',
+    statusClass: 'moderate',
+    svi: 35,
+    band: 'MODERATE',
+    channel: '14566 Voice Triage Support',
+    department: 'Dept of Social Justice & Empowerment',
+    statute: 'Protection of Civil Rights Act 1955',
+    officer: 'Counselor Priya Nair (NHAA-CNS-114)',
+    indicators: ['Social isolation', 'Intimidation threat'],
+    summary: 'Complainant reported social boycott in rural Panchayat area. Emotional support session initiated and legal guidance team dispatched.'
+  }
+};
+
+function openCaseLookupModal() {
+  const modal = document.getElementById('case-tracker-modal');
+  if (modal) {
+    modal.classList.add('active');
+    const input = document.getElementById('modal-case-search-input');
+    if (input) input.focus();
+  }
+}
+
+function closeCaseLookupModal() {
+  const modal = document.getElementById('case-tracker-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+}
+
+function searchCaseStatus() {
+  const input = document.getElementById('modal-case-search-input') || document.getElementById('case-search-input');
+  if (!input) return;
+
+  const query = input.value.trim().toUpperCase();
+  const resultContainer = document.getElementById('case-lookup-result');
+  if (!resultContainer) return;
+
+  if (!query) {
+    showToast('Please enter a Case Tracking ID', 'error');
+    return;
+  }
+
+  // First check local offline storage for cases created dynamically in the AI Chatbox
+  let localCases = {};
+  try {
+    const raw = localStorage.getItem('nhaa_offline_cases_db');
+    if (raw) localCases = JSON.parse(raw);
+  } catch (e) {
+    console.warn("Error reading local cases:", e);
+  }
+
+  let caseData = null;
+  const localMatchKey = Object.keys(localCases).find(k => k.toUpperCase() === query);
+
+  if (localMatchKey) {
+    const rawCase = localCases[localMatchKey];
+    const indNames = (rawCase.detectedIndicators || []).map(i => `${i.name} (+${i.weight} pts)`);
+    caseData = {
+      id: rawCase.id,
+      date: rawCase.createdFormatted || new Date(rawCase.createdAt).toLocaleString('en-IN'),
+      status: (rawCase.status || 'ACTIVE').replace(/_/g, ' '),
+      statusClass: (rawCase.riskBand || 'LOW').toLowerCase(),
+      svi: rawCase.sviScore || 0,
+      band: rawCase.riskBand || 'LOW',
+      channel: rawCase.channel || '24/7 Web AI Crisis Chat (Offline)',
+      department: 'Ministry of Social Justice & Empowerment',
+      statute: 'SC/ST (Prevention of Atrocities) Act 1989 & PCR Act 1955',
+      officer: rawCase.criticalOverride ? 'Urgent Alert -> District Nodal Officer & SP' : 'Senior Triage Officer Queue',
+      indicators: indNames.length > 0 ? indNames : ['No statutory indicators flagged yet'],
+      summary: `Real-time AI Chat session for ${rawCase.complainant ? rawCase.complainant.name : 'Citizen'}. SVI: ${rawCase.sviScore}/100 (${rawCase.riskBand}). Critical Override: ${rawCase.criticalOverride ? 'TRIGGERED ⚠️' : 'None'}. Messages logged: ${(rawCase.messages || []).length}.`,
+      isLiveChatCase: true
+    };
+  } else if (MOCK_CASES[query]) {
+    caseData = MOCK_CASES[query];
+  } else {
+    caseData = MOCK_CASES['NHAA-2026-00124'];
+  }
+
+  const liveChatCTA = caseData.isLiveChatCase
+    ? `<div style="margin-top:0.75rem;">
+        <a href="chat.html" class="btn btn-sm btn-saffron" style="display:inline-flex; align-items:center; gap:0.35rem;">
+          💬 Open Active AI Chat Session
+        </a>
+       </div>`
+    : '';
+
+  resultContainer.innerHTML = `
+    <div style="background:var(--bg-body); border:1px solid var(--border-light); border-radius:var(--radius-lg); padding:1.25rem; margin-top:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+        <div>
+          <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">CASE REGISTRATION</span>
+          <h4 style="font-size:1.1rem; color:var(--primary-900); font-weight:800;">${caseData.id}</h4>
+        </div>
+        <span class="risk-chip ${caseData.statusClass}">${caseData.band}</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; font-size:0.82rem; margin-bottom:1rem; background:#fff; padding:0.75rem; border-radius:var(--radius-md); border:1px solid var(--border-light);">
+        <div><strong>Status:</strong> <span style="color:var(--primary-600);">${caseData.status}</span></div>
+        <div><strong>Calculated SVI:</strong> <span style="font-weight:700;">${caseData.svi} / 100</span></div>
+        <div><strong>Channel:</strong> ${caseData.channel}</div>
+        <div><strong>Assigned:</strong> ${caseData.officer}</div>
+      </div>
+
+      <div style="font-size:0.82rem; margin-bottom:0.75rem;">
+        <strong>Detected Risk Indicators:</strong>
+        <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.35rem;">
+          ${caseData.indicators.map(ind => `<span style="background:var(--primary-100); color:var(--primary-700); font-weight:600; padding:2px 8px; border-radius:6px; font-size:0.75rem;">${ind}</span>`).join('')}
+        </div>
+      </div>
+
+      <div style="font-size:0.82rem; color:var(--text-main); background:#fff; padding:0.75rem; border-radius:var(--radius-md); border-left:3px solid var(--primary-500);">
+        <strong>AI Assessment Summary:</strong>
+        <p style="margin-top:0.25rem; color:var(--text-muted);">${caseData.summary}</p>
+      </div>
+
+      ${liveChatCTA}
+
+      <div style="margin-top:1rem; font-size:0.75rem; color:var(--text-muted); text-align:right;">
+        Governing Statute: <em>${caseData.statute}</em>
+      </div>
+    </div>
+  `;
+
+  showToast(`Record retrieved for ${caseData.id}`, 'success');
+}
+
+/**
+ * Floating AI Crisis Chat Widget for Portal Pages
+ */
+function initFloatingAIChat() {
+  if (window.location.pathname.includes('chat.html')) return;
+
+  // Check if launcher already exists
+  if (document.getElementById('floating-chat-launcher')) return;
+
+  const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+
+  // Floating button launcher
+  const launcher = document.createElement('div');
+  launcher.id = 'floating-chat-launcher';
+  launcher.className = 'floating-chat-launcher';
+  launcher.innerHTML = `
+    <span class="pulse-dot" style="background:#ffffff; width:8px; height:8px;"></span>
+    <span>💬 AI Crisis Chat</span>
+  `;
+
+  // Floating chat window container
+  const windowEl = document.createElement('div');
+  windowEl.id = 'floating-chat-window';
+  windowEl.className = 'floating-chat-window';
+  windowEl.innerHTML = `
+    <div class="floating-chat-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="pulse-dot" style="background:#34d399; width:7px; height:7px;"></span>
+        <strong style="font-size:0.85rem;">NHAA 14566 AI Triage</strong>
+      </div>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <a href="chat.html" title="Expand Full Triage Room" style="color:#ffffff; opacity:0.8; font-size:0.75rem;">⛶ Expand</a>
+        <button onclick="toggleFloatingChat()" style="background:transparent; border:none; color:#fff; font-size:1.1rem; cursor:pointer; line-height:1;">&times;</button>
+      </div>
+    </div>
+    <div id="floating-chat-stream" class="floating-chat-stream">
+      <div style="background:#ffffff; padding:8px 12px; border-radius:10px; border-left:3px solid var(--accent-saffron); font-size:0.82rem;">
+        Namaste. You are connected to the 100% Offline AI Crisis Triage Module. How can we support you right now?
+      </div>
+    </div>
+    <div class="floating-chat-input-row">
+      <input type="text" id="floating-chat-input" placeholder="Type situation (English, हिन्दी, বাংলা...)" onkeydown="if(event.key==='Enter') sendFloatingChatMessage()">
+      <button onclick="sendFloatingChatMessage()">Send</button>
+    </div>
+  `;
+
+  launcher.addEventListener('click', toggleFloatingChat);
+  document.body.appendChild(launcher);
+  document.body.appendChild(windowEl);
+}
+
+function toggleFloatingChat() {
+  const win = document.getElementById('floating-chat-window');
+  if (win) {
+    win.classList.toggle('active');
+    if (win.classList.contains('active')) {
+      const input = document.getElementById('floating-chat-input');
+      if (input) input.focus();
+    }
+  }
+}
+
+function sendFloatingChatMessage() {
+  const input = document.getElementById('floating-chat-input');
+  const stream = document.getElementById('floating-chat-stream');
+  if (!input || !stream) return;
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  // Append user bubble
+  const userBubble = document.createElement('div');
+  userBubble.style.cssText = "background:var(--primary-600); color:#fff; padding:8px 12px; border-radius:10px; align-self:flex-end; max-width:85%; word-break:break-word;";
+  userBubble.textContent = text;
+  stream.appendChild(userBubble);
+  input.value = '';
+  stream.scrollTop = stream.scrollHeight;
+
+  // Process through Offline AI Engine if available
+  setTimeout(() => {
+    let reply = "Your statement has been recorded in the NHAA triage registry. For urgent physical danger, dial 14566 or 112 immediately.";
+    let sviScore = 0;
+    let isUrgent = false;
+
+    if (window.offlineEngineInstance) {
+      const res = window.offlineEngineInstance.processMessage(text);
+      if (res) {
+        reply = res.botReply;
+        sviScore = res.sviScore;
+        isUrgent = res.urgent;
+      }
+    }
+
+    const botBubble = document.createElement('div');
+    botBubble.style.cssText = `background:${isUrgent ? '#fef2f2' : '#ffffff'}; color:var(--text-main); padding:8px 12px; border-radius:10px; border-left:3px solid ${isUrgent ? '#dc2626' : 'var(--accent-saffron)'}; align-self:flex-start; max-width:85%; word-break:break-word;`;
+    botBubble.innerHTML = `<strong>${isUrgent ? '🚨 Crisis AI' : '🤖 NHAA AI'}:</strong> ${reply}`;
+    stream.appendChild(botBubble);
+    stream.scrollTop = stream.scrollHeight;
+  }, 350);
+}
+
+// Initial binding
+document.addEventListener('DOMContentLoaded', () => {
+  // Bind SVI checkboxes
+  const sviCheckboxes = document.querySelectorAll('.criterion-checkbox');
+  sviCheckboxes.forEach(cb => {
+    cb.addEventListener('change', updateSviCalculation);
+  });
+  updateSviCalculation();
+
+  // Close modal when clicking backdrop
+  const modal = document.getElementById('case-tracker-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeCaseLookupModal();
+    });
+  }
+
+  // Initialize Floating AI Chat Widget across portal
+  initFloatingAIChat();
+
+  // Show Active Citizen Banner if logged in as citizen
+  const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+  const citizenBanner = document.getElementById('citizen-active-banner');
+  if (citizenBanner && user && !user.isOfficer) {
+    citizenBanner.style.display = 'block';
+  }
+});
+
+
+/**
+ * NHAA 14566 - Autonomous Citizen Crisis Chat Client
+ * 100% Offline AI Integration • Multilingual Intake • Real-Time SVI Triage
+ * Compliant with Section 8.4 Formula: SVI = MIN(100, sum of applicable approved criterion weights)
+ * & Section 8.3 Critical Overrides
+ */
+
+let isSubmitting = false;
+let chatInitialized = false;
+
+// Multilingual Quick Prompts
+const QUICK_PROMPTS = {
+  danger: "They are outside my house right now with iron rods and shouting death threats!",
+  hindi: "बाहर भीड़ लाठी-डंडे लेकर दरवाजे पर खड़ी है और जान से मारने की धमकी दे रही है!",
+  bengali: "বাড়ি ঘিরে ধরেছে দল বেঁধে, প্রাণনাশের হুমকি দিচ্ছে ও দরজা ভাঙার চেষ্টা করছে!",
+  tamil: "வெளியே கும்பலாக ஆயுதங்களுடன் சூழ்ந்து கொண்டு எங்களை கொலை மிரட்டல் விடுக்கிறார்கள்!",
+  hinglish: "Bahar log hathiyar leke darwaza todne ki koshish kar rahe hain, bohot dar lag raha hai!",
+  selfharm: "I cannot bear this caste humiliation anymore, there is no hope, I want to end my life.",
+  medical: "My brother was severely beaten, head injury bleeding profusely and local clinic is refusing admission.",
+  boycott: "The village council decree has ordered a complete social boycott and barred our families from taking well water."
+};
+
+/**
+ * Initialize Chat Session on Page Load (Idempotent)
+ */
+function initChat() {
+  if (chatInitialized) return;
+  chatInitialized = true;
+
+  const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+
+  // Initialize offline engine session
+  let activeCase = null;
+  if (window.offlineEngineInstance) {
+    activeCase = window.offlineEngineInstance.initSession({
+      name: user ? user.name : 'Kavita Verma',
+      phone: user ? (user.phone || '9876543210') : '9876543210',
+      role: user ? user.role : 'Citizen / Complainant'
+    });
+  }
+
+  // Update Complainant UI Header
+  const userGreeting = document.getElementById('chat-complainant-name');
+  if (userGreeting) {
+    const dispName = user ? user.name : (activeCase ? activeCase.complainant.name : 'Citizen Complainant');
+    const dispPhone = user ? (user.phone || '9876543210') : (activeCase ? activeCase.complainant.phone : '9876543210');
+    userGreeting.textContent = `${dispName} (${dispPhone})`;
+  }
+
+  // Update Case ID
+  const caseIdDisplay = document.getElementById('active-case-id');
+  if (caseIdDisplay && activeCase) {
+    caseIdDisplay.textContent = activeCase.id;
+  }
+
+  // Restore existing messages if case has history
+  if (activeCase && activeCase.messages && activeCase.messages.length > 0) {
+    renderExistingMessages(activeCase.messages);
+    updateSviLivePanel({
+      svi_score: activeCase.sviScore,
+      risk_band: activeCase.riskBand,
+      critical_override: activeCase.criticalOverride,
+      override_reasons: activeCase.overrideReasons || [],
+      raw_sum: (activeCase.sviMetadata && activeCase.sviMetadata.raw_sum) || activeCase.sviScore,
+      formula: (activeCase.sviMetadata && activeCase.sviMetadata.formula) || "SVI = MIN(100, sum of applicable approved criterion weights)",
+      criteria_version: (activeCase.sviMetadata && activeCase.sviMetadata.criteria_version) || "SVI-8.1",
+      all_indicators: activeCase.detectedIndicators,
+      turn_count: activeCase.conversationState ? activeCase.conversationState.turnCount : 0
+    });
+  }
+
+  // Bind Enter key to input
+  const input = document.getElementById('chat-input');
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  }
+}
+
+/**
+ * Render historical conversation messages cleanly
+ */
+function renderExistingMessages(messages) {
+  const stream = document.getElementById('chat-stream');
+  if (!stream || !messages || messages.length === 0) return;
+  stream.innerHTML = '';
+
+  messages.forEach(msg => {
+    appendMessage(msg.text, msg.sender, msg.timestamp, msg.urgent);
+  });
+}
+
+/**
+ * Quick Prompt Handler
+ */
+function sendQuickPrompt(key) {
+  const prompt = QUICK_PROMPTS[key];
+  if (!prompt) return;
+  const input = document.getElementById('chat-input');
+  if (input) {
+    input.value = prompt;
+    sendMessage();
+  }
+}
+
+/**
+ * Language Selector Handler
+ */
+function changeLanguage(langCode) {
+  if (window.offlineEngineInstance) {
+    window.offlineEngineInstance.setLanguage(langCode);
+  }
+  const tag = document.getElementById('sidepanel-lang-tag');
+  if (tag) {
+    const langNames = {
+      auto: 'Auto-Detect',
+      en: 'English',
+      hi: 'हिन्दी',
+      bn: 'বাংলা',
+      ta: 'தமிழ்',
+      te: 'తెలుగు',
+      mr: 'मराठी',
+      hinglish: 'Hinglish'
+    };
+    tag.textContent = langNames[langCode] || langCode;
+  }
+  if (typeof showToast === 'function') {
+    showToast(`Language set to: ${langCode.toUpperCase()}`, 'info');
+  }
+}
+
+/**
+ * Sensitivity Mode Toggle
+ */
+function toggleSensitivity() {
+  const btn = document.getElementById('btn-toggle-sensitivity');
+  if (!btn || !window.offlineEngineInstance) return;
+
+  const currentMode = window.offlineEngineInstance.sensitivityMode;
+  const newMode = currentMode === 'high' ? 'standard' : 'high';
+  window.offlineEngineInstance.setSensitivity(newMode);
+
+  if (newMode === 'high') {
+    btn.className = 'btn-control-chip active';
+    btn.innerHTML = '⚡ High Sensitivity: ON';
+    if (typeof showToast === 'function') {
+      showToast('High Sensitivity Enabled: Identifies subtle trauma & veiled distress', 'info');
+    }
+  } else {
+    btn.className = 'btn-control-chip';
+    btn.innerHTML = '🛡️ Standard Sensitivity';
+    if (typeof showToast === 'function') {
+      showToast('Standard Sensitivity Mode Active', 'info');
+    }
+  }
+}
+
+/**
+ * Main Message Dispatcher (Synchronous Instant SVI + Smooth Typing Experience)
+ */
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  if (!input) return;
+
+  const text = input.value.trim();
+  if (!text || isSubmitting) return;
+
+  // 1. Append user message immediately
+  appendMessage(text, 'USER');
+  input.value = '';
+  isSubmitting = true;
+
+  // 2. Compute SVI Synchronously & Instantly (0ms Lag!)
+  let offlineResult = null;
+  if (window.offlineEngineInstance) {
+    offlineResult = window.offlineEngineInstance.processMessage(text);
+  }
+
+  // 3. Update Live SVI Assessment Sidepanel & Header immediately in the same frame!
+  if (offlineResult) {
+    updateSviLivePanel({
+      svi_score: offlineResult.sviScore,
+      risk_band: offlineResult.riskBand,
+      critical_override: offlineResult.criticalOverride,
+      override_reasons: offlineResult.overrideReasons || [],
+      raw_sum: offlineResult.rawSum,
+      formula: offlineResult.formula,
+      criteria_version: offlineResult.criteriaVersion,
+      all_indicators: offlineResult.allIndicators,
+      recommended_action: offlineResult.recommendedAction,
+      language_name: offlineResult.languageName,
+      turn_count: offlineResult.turnCount
+    });
+
+    const caseIdDisplay = document.getElementById('active-case-id');
+    if (caseIdDisplay) {
+      caseIdDisplay.textContent = offlineResult.caseId;
+    }
+  }
+
+  // 4. Detached background sync (completely non-blocking)
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(() => tryBackgroundSync(text, offlineResult));
+  } else {
+    setTimeout(() => tryBackgroundSync(text, offlineResult), 0);
+  }
+
+  // 5. Show realistic typing indicator, then append AI reply smoothly
+  showTypingIndicator(true);
+  setTimeout(() => {
+    showTypingIndicator(false);
+    isSubmitting = false;
+
+    if (offlineResult) {
+      appendMessage(offlineResult.botReply, 'BOT', null, offlineResult.urgent);
+    } else {
+      appendMessage("Namaste. Your message was received. Please describe any immediate danger you face.", 'BOT');
+    }
+    input.focus();
+  }, 300);
+}
+
+/**
+ * Non-blocking background sync with backend if running
+ */
+async function tryBackgroundSync(text, offlineResult) {
+  try {
+    const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+    const token = localStorage.getItem('auth_token');
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const payload = {
+      message: text,
+      case_id: offlineResult ? offlineResult.caseId : null,
+      complainant_name: user ? user.name : 'Citizen Complainant',
+      phone: user ? user.phone : '9876543210',
+      state: 'National Intake',
+      district: 'Online Portal',
+      channel: 'WEB_CHAT'
+    };
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1500);
+
+    await fetch('http://localhost:5000/api/chat', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+  } catch (e) {
+    // Graceful silent fallback to 100% offline mode
+  }
+}
+
+/**
+ * Append Message Bubble to UI
+ */
+function appendMessage(text, sender, timeOverride, isUrgent = false) {
+  const stream = document.getElementById('chat-stream');
+  if (!stream) return;
+
+  const row = document.createElement('div');
+  row.className = `chat-row ${sender === 'USER' ? 'chat-row-user' : 'chat-row-bot'}`;
+
+  const timeStr = timeOverride || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  if (sender === 'USER') {
+    row.innerHTML = `
+      <div class="chat-bubble chat-bubble-user">
+        <div class="bubble-meta"><span>You</span><span>${timeStr}</span></div>
+        <div class="bubble-text">${escapeHtml(text)}</div>
+      </div>
+    `;
+  } else if (sender === 'BOT') {
+    const urgentClass = isUrgent ? 'urgent-alert' : '';
+    const botBadge = isUrgent ? '🚨 NHAA Crisis Triage AI' : '🤖 NHAA AI Assistant';
+    row.innerHTML = `
+      <div class="chat-bubble chat-bubble-ai ${urgentClass}">
+        <div class="bubble-meta"><span>${botBadge}</span><span>${timeStr}</span></div>
+        <div class="bubble-text">${escapeHtml(text)}</div>
+      </div>
+    `;
+  }
+
+  stream.appendChild(row);
+  stream.scrollTop = stream.scrollHeight;
+}
+
+/**
+ * Show / Hide Typing Indicator
+ */
+function showTypingIndicator(show) {
+  let indicator = document.getElementById('typing-indicator');
+  const stream = document.getElementById('chat-stream');
+  if (!stream) return;
+
+  if (show) {
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.id = 'typing-indicator';
+      indicator.className = 'chat-row chat-row-bot';
+      indicator.innerHTML = `
+        <div class="chat-bubble chat-bubble-ai" style="padding: 8px 14px; font-style: italic; color: #64748b; font-size: 0.8rem;">
+          <span class="pulse-dot" style="display:inline-block; width:6px; height:6px; background:#3b82f6; margin-right:5px;"></span>
+          AI is analyzing multilingual distress signals & SVI indicators...
+        </div>
+      `;
+      stream.appendChild(indicator);
+      stream.scrollTop = stream.scrollHeight;
+    }
+  } else {
+    if (indicator) indicator.remove();
+  }
+}
+
+/**
+ * Update Live SVI Gauge & Sidepanel UI (Synchronizes Sidepanel & Header Strip)
+ * Adheres strictly to Section 8.4 Formula & Section 8.3 Critical Overrides
+ */
+function updateSviLivePanel(data) {
+  const scoreEl = document.getElementById('panel-svi-score');
+  const bandEl = document.getElementById('panel-risk-band');
+  const progressEl = document.getElementById('panel-svi-progress');
+  const overrideNotice = document.getElementById('panel-override-notice');
+  const indicatorsList = document.getElementById('panel-indicators-list');
+  const indicatorCount = document.getElementById('panel-indicator-count');
+  const actionEl = document.getElementById('panel-action-rec');
+  const langTag = document.getElementById('sidepanel-lang-tag');
+  const formulaMetaEl = document.getElementById('panel-svi-formula-meta');
+
+  // Header strip elements (always visible on all screens!)
+  const headerScoreEl = document.getElementById('chat-header-svi-score');
+  const headerBandEl = document.getElementById('chat-header-risk-band');
+  const headerProgressEl = document.getElementById('chat-header-svi-progress');
+  const headerOverrideEl = document.getElementById('chat-header-override');
+  const headerIndBadge = document.getElementById('chat-header-indicator-badge');
+
+  const score = typeof data.svi_score === 'number' ? data.svi_score : 0;
+  const band = data.risk_band || 'LOW';
+  const rawSum = typeof data.raw_sum === 'number' ? data.raw_sum : score;
+  const overrideReasons = data.override_reasons || [];
+
+  // Update score on both panels cleanly with zero jitter
+  if (scoreEl) {
+    scoreEl.textContent = `${score} / 100`;
+    scoreEl.style.color = (band === 'CRITICAL' || data.critical_override) ? '#dc2626' : (band === 'HIGH' ? '#d97706' : (band === 'MODERATE' ? '#2563eb' : '#0a2540'));
+  }
+
+  if (headerScoreEl) {
+    headerScoreEl.textContent = `${score} / 100`;
+    headerScoreEl.style.color = (band === 'CRITICAL' || data.critical_override) ? '#fca5a5' : '#ffffff';
+  }
+
+  // Live Sync Badge in Sidepanel
+  const syncBadge = document.getElementById('panel-sync-badge');
+  if (syncBadge) {
+    const turnText = data.turn_count ? `Turn #${data.turn_count}` : 'Live Synced';
+    syncBadge.textContent = `⚡ ${turnText}`;
+  }
+
+  // Formula & Raw Sum note
+  if (formulaMetaEl) {
+    formulaMetaEl.innerHTML = `
+      <div style="font-size:0.68rem; color:#64748b; margin-top:3px;">
+        <strong>Formula:</strong> SVI = MIN(100, &Sigma; weights) &bull; <span style="color:#0f3460; font-weight:700;">v8.1</span>
+        ${rawSum !== score ? `<br><span style="color:#b45309; font-weight:600;">(Uncapped Weight Sum: ${rawSum} pts)</span>` : ''}
+      </div>
+    `;
+  }
+
+  // Colors based on risk band
+  let fillBg = '#10b981';
+  if (band === 'CRITICAL' || data.critical_override) fillBg = '#dc2626';
+  else if (band === 'HIGH') fillBg = '#d97706';
+  else if (band === 'MODERATE') fillBg = '#2563eb';
+
+  if (progressEl) {
+    progressEl.style.width = `${Math.max(6, score)}%`;
+    progressEl.style.backgroundColor = fillBg;
+  }
+
+  if (headerProgressEl) {
+    headerProgressEl.style.width = `${Math.max(6, score)}%`;
+    headerProgressEl.style.backgroundColor = fillBg;
+  }
+
+  if (bandEl) {
+    bandEl.textContent = `${band} RISK`;
+    bandEl.className = `risk-chip ${band.toLowerCase()}`;
+  }
+
+  if (headerBandEl) {
+    headerBandEl.textContent = `${band} RISK`;
+    headerBandEl.className = `risk-chip ${band.toLowerCase()}`;
+  }
+
+  // Critical Override Notice in Sidepanel
+  if (overrideNotice) {
+    if (data.critical_override) {
+      overrideNotice.style.display = 'block';
+      const reasonHtml = overrideReasons.length > 0
+        ? `<div style="margin-top:4px; font-weight:500; font-size:0.68rem;">${overrideReasons.map(r => `&bull; ${escapeHtml(r)}`).join('<br>')}</div>`
+        : '';
+      overrideNotice.innerHTML = `
+        <div style="font-weight:700;">⚠️ SECTION 8.3 CRITICAL OVERRIDE ACTIVE</div>
+        ${reasonHtml}
+        <div style="margin-top:4px; font-weight:600; font-size:0.68rem; color:#991b1b;">
+          Final classification elevated to <strong>CRITICAL</strong> regardless of calculated score (${score}/100).
+        </div>
+      `;
+    } else {
+      overrideNotice.style.display = 'none';
+    }
+  }
+
+  // Critical Override Notice in Header Strip
+  if (headerOverrideEl) {
+    if (data.critical_override) {
+      headerOverrideEl.style.display = 'inline-block';
+      headerOverrideEl.textContent = '⚠️ Critical Override (Section 8.3)';
+    } else {
+      headerOverrideEl.style.display = 'none';
+    }
+  }
+
+  if (actionEl && data.recommended_action) {
+    actionEl.textContent = data.recommended_action;
+  }
+
+  if (langTag && data.language_name) {
+    langTag.textContent = data.language_name;
+  }
+
+  if (headerIndBadge && data.all_indicators) {
+    headerIndBadge.textContent = `${data.all_indicators.length} Indicator${data.all_indicators.length === 1 ? '' : 's'}`;
+  }
+
+  // Render Indicators List
+  if (indicatorsList && data.all_indicators) {
+    const indicators = data.all_indicators;
+    if (indicatorCount) indicatorCount.textContent = indicators.length;
+
+    if (indicators.length === 0) {
+      indicatorsList.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted); font-style:italic;">No indicators detected yet. Verified criteria with quoted evidentiary text will appear here.</div>';
+    } else {
+      indicatorsList.innerHTML = '';
+      indicators.forEach(ind => {
+        const item = document.createElement('div');
+        const isOverride = ind.is_override;
+        item.className = `indicator-pill-item ${isOverride ? 'override' : ''}`;
+        item.innerHTML = `
+          <div style="font-weight:700; display:flex; justify-content:space-between; align-items:center;">
+            <span>${isOverride ? '🚨 ' : '📌 '}${escapeHtml(ind.name)}</span>
+            <span style="color:${isOverride ? '#dc2626' : '#059669'}; font-size:0.7rem; font-weight:700;">+${ind.weight} pts</span>
+          </div>
+          <div style="color:#475569; font-style:italic; margin-top:3px; word-break:break-word; font-size:0.72rem; background:rgba(255,255,255,0.7); padding:3px 6px; border-radius:4px; border:1px solid #e2e8f0;">
+            "${escapeHtml(ind.evidence)}"
+          </div>
+          <div style="font-size:0.65rem; color:#94a3b8; margin-top:3px; display:flex; justify-content:space-between;">
+            <span>Category: ${escapeHtml(ind.category)}</span>
+            <span>${ind.timestamp || ''}</span>
+          </div>
+        `;
+        indicatorsList.appendChild(item);
+      });
+    }
+  }
+}
+
+/**
+ * Session Dossier Modal Management (Section 8.4 Compliant)
+ */
+function openSessionDossierModal() {
+  const modal = document.getElementById('session-dossier-modal');
+  if (!modal || !window.offlineEngineInstance) return;
+
+  const currentCase = window.offlineEngineInstance.currentCase;
+  if (!currentCase) return;
+
+  // SVI Calculation Metadata
+  const rawSum = (currentCase.sviMetadata && currentCase.sviMetadata.raw_sum) || currentCase.sviScore;
+  const formula = (currentCase.sviMetadata && currentCase.sviMetadata.formula) || "SVI = MIN(100, sum of applicable approved criterion weights)";
+  const criteriaVersion = (currentCase.sviMetadata && currentCase.sviMetadata.criteria_version) || "SVI-8.1";
+  const overrideReasons = currentCase.overrideReasons || [];
+
+  // Metadata
+  const metaContainer = document.getElementById('dossier-case-meta');
+  if (metaContainer) {
+    metaContainer.innerHTML = `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+        <div><strong>Case ID:</strong> <code style="color:var(--primary-600);">${currentCase.id}</code></div>
+        <div><strong>Current Status:</strong> <span class="risk-chip ${currentCase.riskBand.toLowerCase()}" style="font-size:0.7rem;">${currentCase.status}</span></div>
+        <div><strong>Complainant:</strong> ${escapeHtml(currentCase.complainant.name)} (${escapeHtml(currentCase.complainant.phone)})</div>
+        <div><strong>Started:</strong> ${currentCase.createdFormatted}</div>
+        <div><strong>Calculated SVI:</strong> <strong style="color:${currentCase.riskBand === 'CRITICAL' ? '#dc2626' : '#0f3460'};">${currentCase.sviScore} / 100</strong> (Raw Sum: ${rawSum} pts)</div>
+        <div><strong>Final Risk Band:</strong> <span class="risk-chip ${currentCase.riskBand.toLowerCase()}" style="font-size:0.7rem;">${currentCase.riskBand}</span></div>
+        <div><strong>Criteria Version:</strong> <code>${criteriaVersion}</code></div>
+        <div><strong>Critical Override:</strong> ${currentCase.criticalOverride ? '<span style="color:#dc2626; font-weight:700;">⚠️ TRIGGERED (Section 8.3)</span>' : 'None (False)'}</div>
+      </div>
+      <div style="margin-top:0.6rem; padding-top:0.6rem; border-top:1px solid #e2e8f0; font-size:0.75rem; color:#475569;">
+        <strong>Statutory Formula (Section 8.4):</strong> <code>${formula}</code>
+        ${overrideReasons.length > 0 ? `<div style="color:#b91c1c; margin-top:2px;"><strong>Section 8.3 Overrides:</strong> ${escapeHtml(overrideReasons.join(', '))}</div>` : ''}
+      </div>
+    `;
+  }
+
+  // Indicators with Quoted Evidentiary Snippets
+  const indContainer = document.getElementById('dossier-indicators-container');
+  if (indContainer) {
+    if (currentCase.detectedIndicators.length === 0) {
+      indContainer.innerHTML = '<div style="font-size:0.78rem; color:var(--text-muted); font-style:italic;">No indicators recorded yet.</div>';
+    } else {
+      indContainer.innerHTML = `
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          ${currentCase.detectedIndicators.map(i => `
+            <div style="background:#f8fafc; border:1px solid ${i.is_override ? '#fca5a5' : '#e2e8f0'}; padding:8px 10px; border-radius:6px; font-size:0.76rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px;">
+                <strong>${i.is_override ? '🚨 ' : '📌 '}${escapeHtml(i.name)}</strong>
+                <span style="font-weight:700; color:${i.is_override ? '#dc2626' : '#059669'};">Weight: +${i.weight} (Conf: ${Math.round(i.confidence * 100)}%)</span>
+              </div>
+              <div style="color:#334155; font-style:italic; background:#ffffff; padding:4px 8px; border-radius:4px; border:1px solid #e2e8f0;">
+                Quoted Evidentiary Basis: "${escapeHtml(i.evidence)}"
+              </div>
+              <div style="font-size:0.68rem; color:#94a3b8; margin-top:3px;">
+                Category: ${escapeHtml(i.category)} &bull; Recorded: ${i.timestamp}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+  }
+
+  // Transcript
+  const transContainer = document.getElementById('dossier-transcript-container');
+  if (transContainer) {
+    transContainer.innerHTML = currentCase.messages.map(m => `
+      <div style="padding:5px 8px; border-radius:4px; background:${m.sender === 'USER' ? '#f0fdf4' : '#f8fafc'}; border-left:3px solid ${m.sender === 'USER' ? '#22c55e' : '#3b82f6'};">
+        <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#64748b; margin-bottom:2px;">
+          <strong>${m.sender === 'USER' ? 'Citizen' : 'NHAA AI Triage Assistant'}</strong>
+          <span>${m.timestamp}</span>
+        </div>
+        <div>${escapeHtml(m.text)}</div>
+      </div>
+    `).join('');
+  }
+
+  // Audit Logs
+  const auditContainer = document.getElementById('dossier-audit-container');
+  if (auditContainer) {
+    auditContainer.innerHTML = currentCase.auditLogs.map(a => `
+      <div style="margin-bottom:4px; padding-bottom:4px; border-bottom:1px solid #e2e8f0;">
+        &bull; <code>${a.timestamp}</code> &mdash; <strong>${escapeHtml(a.action)}</strong>: <span style="word-break:break-word;">${escapeHtml(a.details)}</span>
+      </div>
+    `).join('');
+  }
+
+  modal.classList.add('active');
+}
+
+function closeSessionDossierModal() {
+  const modal = document.getElementById('session-dossier-modal');
+  if (modal) modal.classList.remove('active');
+}
+
+/**
+ * Export Case Dossier as Downloadable JSON Record
+ */
+function exportAndDownloadCase() {
+  if (!window.offlineEngineInstance) return;
+  const dataStr = window.offlineEngineInstance.exportDossier();
+  if (!dataStr) {
+    if (typeof showToast === 'function') showToast('No case data to export', 'error');
+    return;
+  }
+
+  const caseId = window.offlineEngineInstance.currentCase ? window.offlineEngineInstance.currentCase.id : 'CASE';
+  const blob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${caseId}-confidential-triage-dossier.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  if (typeof showToast === 'function') {
+    showToast(`Dossier exported for ${caseId}`, 'success');
+  }
+}
+
+/**
+ * Start Fresh Session / Reset Case
+ */
+function startNewCase() {
+  const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+  if (!window.offlineEngineInstance) return;
+
+  const newCase = window.offlineEngineInstance.startNewSession({
+    name: user ? user.name : 'Kavita Verma',
+    phone: user ? (user.phone || '9876543210') : '9876543210',
+    role: user ? user.role : 'Citizen / Complainant'
+  });
+
+  const stream = document.getElementById('chat-stream');
+  if (stream && newCase && newCase.messages && newCase.messages.length > 0) {
+    stream.innerHTML = '';
+    appendMessage(newCase.messages[0].text, 'BOT', newCase.messages[0].timestamp);
+  }
+
+  const caseIdDisplay = document.getElementById('active-case-id');
+  if (caseIdDisplay) {
+    caseIdDisplay.textContent = newCase.id;
+  }
+
+  updateSviLivePanel({
+    svi_score: 0,
+    risk_band: 'LOW',
+    critical_override: false,
+    override_reasons: [],
+    raw_sum: 0,
+    all_indicators: [],
+    recommended_action: 'Standard automated guidance and informational helpline registration.'
+  });
+
+  if (typeof showToast === 'function') {
+    showToast(`New crisis session started: ${newCase.id}`, 'success');
+  }
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Bind on DOM Ready
+document.addEventListener('DOMContentLoaded', () => {
+  initChat();
+
+  const modal = document.getElementById('session-dossier-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeSessionDossierModal();
+    });
+  }
+});
+
+</script>
+</body>
+</html>
